@@ -12,11 +12,11 @@ import { Link } from "react-router-dom";
 
 export default function SignIn() {
   return (
-    <Card className="absolute max-w-sm mx-auto transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 centered-element ">
+    <Card className="absolute max-w-sm px-5 mx-auto transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 centered-element ">
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardTitle className="text-2xl">Sign in</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          Enter your email below to sign-in to your account
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -45,7 +45,7 @@ export default function SignIn() {
         </div>
         <div className="mt-4 text-sm text-center">
           Don&apos;t have an account?{" "}
-          <Link to="#" className="underline">
+          <Link to="/auth/user/sign-up" className="underline">
             Sign up
           </Link>
         </div>
