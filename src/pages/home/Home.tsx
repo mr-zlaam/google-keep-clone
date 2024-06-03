@@ -1,7 +1,8 @@
+import { API_KEY } from "@/config";
 import {} from "react";
 
 function Home() {
-  console.log(import.meta.env.VITE_URI);
+  console.log(API_KEY);
   return (
     <>
       <section>Home</section>
