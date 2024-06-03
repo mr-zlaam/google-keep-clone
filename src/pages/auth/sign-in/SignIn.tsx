@@ -33,9 +33,6 @@ export default function SignIn() {
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
-              <Link to="#" className="inline-block ml-auto text-sm underline">
-                Forgot your password?
-              </Link>
             </div>
             <Input id="password" type="password" required />
           </div>
