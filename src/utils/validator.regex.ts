@@ -6,9 +6,6 @@ export const validDateEmail = (email: string) => {
   return false;
 };
 export const validDatePassword = (password: string) => {
-  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
-  if (passwordRegex.test(password)) {
-    return true;
-  }
-  return false;
+  if (password.length < 6 || password.length > 20) return false;
+  else return true;
 };

@@ -38,7 +38,7 @@ export default function SignUp() {
     const isPasswordValid = validDatePassword(password);
     if (!isPasswordValid)
       return setError(
-        "This password is not valid please choose other password"
+        "Password must contain atleast 6 characters and less than 20 characters"
       );
     setError("");
   };
@@ -52,7 +52,7 @@ export default function SignUp() {
         <p className="text-xs font-semibold text-center text-red-500">
           {error}{" "}
         </p>
-        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardTitle className="text-2xl">Sign up</CardTitle>
         <CardDescription>
           Enter username, email and password in order to register yourself.
         </CardDescription>
