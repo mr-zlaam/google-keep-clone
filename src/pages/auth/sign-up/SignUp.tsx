@@ -18,9 +18,10 @@ import { Label } from "@/components/ui/label";
 import { validDateEmail, validDatePassword } from "@/utils/validator.regex";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [isPassVisible, setIsPassVisible] = useState(false);
   const [userData, setUserData] = useState({
     username: "",
@@ -67,6 +68,7 @@ export default function SignUp() {
       }
       if (registerUser.user.displayName === username) {
         alert("User Registered Successfully");
+        return navigate("/auth/user/sign-in");
       } else {
         alert("Something went wrong  while creating user!!");
       }
@@ -84,6 +86,7 @@ export default function SignUp() {
       console.log(registerUser);
       if (registerUser.user.email?.trim() !== "") {
         alert("Logged in Successfully");
+        return navigate("/");
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
