@@ -32,7 +32,8 @@ export default function SignUp() {
     }));
     setError("");
   };
-  const DataValidator = (): boolean | unknown => {
+
+  const handleRegisterUser = async () => {
     const { email, password, username } = userData;
     if (!username || !email || !password)
       return setError("All fields are required!!.");
@@ -44,21 +45,27 @@ export default function SignUp() {
         "Password must contain atleast 6 characters and less than 20 characters"
       );
     setError("");
-    return;
-  };
-  const handleRegisterUser = async () => {
-    const { email, password, username } = userData;
     try {
-      // const isValidate = DataValidator();
-      // if (!isValidate) return;
       const registerUser = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      // Inject username
+
       console.log(registerUser);
-      await updateProfile(registerUser.user, { displayName: username });
+      try {
+        await updateProfile(registerUser.user, {
+          displayName: username,
+        });
+      } catch (error: unknown) {
+        if (error instanceof Error) return error.message;
+        return error;
+      }
+      if (registerUser.user.displayName === username) {
+        alert("User Registered Successfully");
+      } else {
+        alert("Something went wrong  while creating user!!");
+      }
     } catch (error: unknown) {
       if (error instanceof Error) return console.log(error.message);
       else return error;
