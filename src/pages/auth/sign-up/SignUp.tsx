@@ -1,5 +1,7 @@
 import { auth, googleProvider } from "@/backend/db/firebase.config";
 import { Button } from "@/components/ui/button";
+import Cookies from "universal-cookie";
+
 import {
   Card,
   CardContent,
@@ -19,8 +21,9 @@ import { validDateEmail, validDatePassword } from "@/utils/validator.regex";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { UserTypes } from "@/types";
 export default function SignUp() {
+  const cookie = new Cookies();
   const navigate = useNavigate();
   const [isPassVisible, setIsPassVisible] = useState(false);
   const [userData, setUserData] = useState({
@@ -72,7 +75,7 @@ export default function SignUp() {
       } else {
         alert("Something went wrong  while creating user!!");
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error instanceof Error) {
         console.log(error.message);
         return error.message;
@@ -83,9 +86,14 @@ export default function SignUp() {
   const handleLoginWithGoogle = async () => {
     try {
       const registerUser = await signInWithPopup(auth, googleProvider);
-      console.log(registerUser);
       if (registerUser.user.email?.trim() !== "") {
+        console.log(registerUser);
+        const user: UserTypes = registerUser.user;
         alert("Logged in Successfully");
+        cookie.set("uid", user?.uid || "", {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 1000,
+        });
         return navigate("/");
       }
     } catch (error: unknown) {
