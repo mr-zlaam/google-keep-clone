@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 function RootLayout() {
@@ -13,16 +13,15 @@ function RootLayout() {
   useEffect(() => {
     if (!uidFromCookie) return navigate("/auth/user/sign-up");
     onAuthStateChanged(auth, (user) => {
+      console.log("isEqual", user?.uid === uidFromCookie);
       if (user?.uid === uidFromCookie) setIsLogin(true);
       else return navigate("/auth/user/sign-up");
     });
   }, []);
+  console.log("isLogin", isLogin);
   return (
     <>
-      <main>
-        {isLogin ? <Outlet /> : <Navigate to={"/auth/user/sign-up"} />}
-        <Outlet />
-      </main>
+      <main>{isLogin && <Outlet />}</main>
     </>
   );
 }
