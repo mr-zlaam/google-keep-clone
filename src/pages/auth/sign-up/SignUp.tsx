@@ -1,3 +1,4 @@
+import { auth } from "@/backend/db/firebase.config";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { validDateEmail, validDatePassword } from "@/utils/validator.regex";
@@ -29,7 +32,7 @@ export default function SignUp() {
     }));
     setError("");
   };
-  const DataValidator = () => {
+  const DataValidator = (): boolean | unknown => {
     const { email, password, username } = userData;
     if (!username || !email || !password)
       return setError("All fields are required!!.");
@@ -41,11 +44,27 @@ export default function SignUp() {
         "Password must contain atleast 6 characters and less than 20 characters"
       );
     setError("");
+    return;
   };
   const handleRegisterUser = async () => {
-    // const { email, password, username } = userData;
-    DataValidator();
+    const { email, password, username } = userData;
+    try {
+      const isValidate = DataValidator();
+      if (!isValidate) return;
+      const registerUser = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // Inject username
+      await updateProfile(registerUser.user, { displayName: username });
+      console.log(registerUser);
+    } catch (error: unknown) {
+      if (error instanceof Error) return console.log(error.message);
+      else return error;
+    }
   };
+
   return (
     <Card className="absolute max-w-sm px-5 mx-auto transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 centered-element ">
       <CardHeader>
