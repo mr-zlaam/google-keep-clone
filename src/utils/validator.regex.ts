@@ -6,6 +6,6 @@ export const validDateEmail = (email: string) => {
   return false;
 };
 export const validDatePassword = (password: string) => {
-  if (password.length < 6 || password.length > 20) return false;
+  if (password.length < 6 || password.length > 40) return false;
   else return true;
 };

@@ -49,16 +49,16 @@ export default function SignUp() {
   const handleRegisterUser = async () => {
     const { email, password, username } = userData;
     try {
-      const isValidate = DataValidator();
-      if (!isValidate) return;
+      // const isValidate = DataValidator();
+      // if (!isValidate) return;
       const registerUser = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
       // Inject username
-      await updateProfile(registerUser.user, { displayName: username });
       console.log(registerUser);
+      await updateProfile(registerUser.user, { displayName: username });
     } catch (error: unknown) {
       if (error instanceof Error) return console.log(error.message);
       else return error;
