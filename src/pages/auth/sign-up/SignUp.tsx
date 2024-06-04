@@ -17,11 +17,11 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { UserTypes } from "@/types";
 import { validDateEmail, validDatePassword } from "@/utils/validator.regex";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserTypes } from "@/types";
 export default function SignUp() {
   const cookie = new Cookies();
   const navigate = useNavigate();
@@ -89,9 +89,10 @@ export default function SignUp() {
       if (registerUser.user.email?.trim() !== "") {
         console.log(registerUser);
         const user: UserTypes = registerUser.user;
+        const uid = user.uid;
+        console.log(uid);
         alert("Logged in Successfully");
-        cookie.set("uid", user?.uid || "", {
-          httpOnly: true,
+        cookie.set("uid", uid, {
           maxAge: 1000 * 60 * 1000,
         });
         return navigate("/");
