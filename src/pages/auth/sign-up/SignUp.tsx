@@ -1,4 +1,4 @@
-import { auth } from "@/backend/db/firebase.config";
+import { auth, googleProvider } from "@/backend/db/firebase.config";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,7 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,11 +71,28 @@ export default function SignUp() {
         alert("Something went wrong  while creating user!!");
       }
     } catch (error: unknown) {
-      if (error instanceof Error) return console.log(error.message);
-      else return error;
+      if (error instanceof Error) {
+        console.log(error.message);
+        return error.message;
+      }
+    }
+    return error;
+  };
+  const handleLoginWithGoogle = async () => {
+    try {
+      const registerUser = await signInWithPopup(auth, googleProvider);
+      console.log(registerUser);
+      if (registerUser.user.email?.trim() !== "") {
+        alert("Logged in Successfully");
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+        return error.message;
+      }
+      return error;
     }
   };
-
   return (
     <Card className="absolute max-w-sm px-5 mx-auto transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 centered-element ">
       <CardHeader>
@@ -131,7 +152,11 @@ export default function SignUp() {
           <Button onClick={handleRegisterUser} type="submit" className="w-full">
             Sign up
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={handleLoginWithGoogle}
+          >
             Login with Google
           </Button>
         </div>
