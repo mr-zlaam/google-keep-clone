@@ -9,6 +9,7 @@ function RootLayout() {
   const [isLogin, setIsLogin] = useState(false);
   const auth = getAuth();
   const uidFromCookie = cookie.get("uid");
+  console.log(uidFromCookie);
   useEffect(() => {
     if (!uidFromCookie) return navigate("/auth/user/sign-up");
     onAuthStateChanged(auth, (user) => {
