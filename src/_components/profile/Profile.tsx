@@ -43,7 +43,7 @@ function Profile() {
         </div>
       )}
       {isCardOpen && userDetails && (
-        <Card className="bg-background shadow-lg border  absolute top-2 right-4 h-[400px] w-[400px] flex flex-col">
+        <Card className="bg-background shadow-lg border  absolute top-2 right-4 h-[350px] w-[400px] flex flex-col">
           <button
             onClick={() => setIsCardOpen(false)}
             className="absolute rounded-full right-2 top-2 w-[35px] h-[35px] flex justify-center items-center cursor-pointer duration-300 transition-all hover:bg-foreground/10 "
@@ -51,6 +51,19 @@ function Profile() {
             <X className="" />
           </button>
           <h1 className="my-2 text-center">{userDetails.email}</h1>
+          <div className="mx-auto my-3 cursor-pointer flex bg-green-700 select-none items-center justify-center border overflow-hidden rounded-full h-[70px] w-[70px] border-foreground">
+            <img
+              src={userDetails?.photoURL || ""}
+              alt={userDetails.displayName as string}
+              className="object-contain w-auto h-auto mx-auto rounded-full"
+            />
+          </div>
+          <h1 className="text-2xl font-medium text-center">
+            Hi,{" "}
+            {userDetails?.displayName?.split(" ")[0] ||
+              "John Doe".split(" ")[0]}
+            !
+          </h1>
         </Card>
       )}
     </>
