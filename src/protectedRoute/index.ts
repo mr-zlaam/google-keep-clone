@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-export const RouteProtector = () => {
+export const useLoginChecker = () => {
   const cookie = new Cookies();
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);

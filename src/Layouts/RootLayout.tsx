@@ -1,8 +1,8 @@
-import { RouteProtector } from "@/protectedRoute";
+import { useLoginChecker } from "@/protectedRoute";
 import { Outlet } from "react-router-dom";
 
 function RootLayout() {
-  const isLogin = RouteProtector();
+  const isLogin = useLoginChecker();
   return (
     <>
       <main>{isLogin && <Outlet />}</main>
