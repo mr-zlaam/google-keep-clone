@@ -6,7 +6,7 @@ function RootLayout() {
   const isLogin = useLoginChecker();
   return (
     <>
-      <main>
+      <main className="">
         <Navbar />
         {isLogin && <Outlet />}
       </main>

@@ -7,7 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 import { UserTypes } from "@/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-export default function SignUp() {
+export default function Login() {
   const cookie = new Cookies();
   const navigate = useNavigate();
 
@@ -43,11 +43,12 @@ export default function SignUp() {
 
   return (
     <main className="flex items-center justify-center w-full h-screen select-none bg-primary">
-      <button className="flex items-center text-2xl border rounded-lg p-7 bg-foreground text-background">
+      <button
+        onClick={handleLoginWithGoogle}
+        className="flex items-center text-2xl transition-all duration-300 border rounded-lg p-7 bg-foreground text-background hover:scale-110 active:scale-75"
+      >
         <FaGoogle size={40} />
-        <span className="mx-4" onClick={handleLoginWithGoogle}>
-          Continue with Google
-        </span>
+        <span className="mx-4">Continue with Google</span>
       </button>
     </main>
   );

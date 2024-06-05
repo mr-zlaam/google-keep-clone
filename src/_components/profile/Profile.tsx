@@ -45,7 +45,7 @@ function Profile() {
         </div>
       )}
       {isCardOpen && userDetails && (
-        <Card className="bg-blue-50 shadow-lg border  absolute top-2 right-4 h-[350px] w-[400px] flex flex-col">
+        <Card className=" shadow-lg border  absolute top-2 right-4 h-[350px] w-[400px] flex flex-col">
           <button
             onClick={() => setIsCardOpen(false)}
             className="absolute rounded-full right-2 top-2 w-[35px] h-[35px] flex justify-center items-center cursor-pointer duration-300 transition-all hover:bg-foreground/10 "
