@@ -18,7 +18,7 @@ function RootLayout() {
       else return navigate("/auth/user/sign-up");
     });
   }, []);
-  console.log("isLogin", isLogin);
+
   return (
     <>
       <main>{isLogin && <Outlet />}</main>

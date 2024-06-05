@@ -20,7 +20,7 @@ import { Label } from "@/components/ui/label";
 import { UserTypes } from "@/types";
 import { validDateEmail, validDatePassword } from "@/utils/validator.regex";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 export default function SignUp() {
   const cookie = new Cookies();
@@ -83,14 +83,17 @@ export default function SignUp() {
     }
     return error;
   };
+  const isUserLogin = cookie.get("uid");
+  useEffect(() => {
+    if (isUserLogin) return navigate("/");
+  }, []);
   const handleLoginWithGoogle = async () => {
     try {
       const registerUser = await signInWithPopup(auth, googleProvider);
       if (registerUser.user.email?.trim() !== "") {
-        console.log(registerUser);
         const user: UserTypes = registerUser.user;
         const uid = user.uid;
-        console.log(uid);
+
         alert("Logged in Successfully");
         cookie.set("uid", uid, {
           maxAge: 1000 * 60 * 1000,
@@ -105,6 +108,7 @@ export default function SignUp() {
       return error;
     }
   };
+
   return (
     <Card className="absolute max-w-sm px-5 mx-auto transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 centered-element ">
       <CardHeader>
