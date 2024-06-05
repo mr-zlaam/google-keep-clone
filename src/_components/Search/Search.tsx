@@ -5,10 +5,10 @@ import { Search as SearchIcon, X } from "lucide-react";
 function Search() {
   return (
     <>
-      <div className="mx-4 bg-gray-200  search md:w-[400px] shadow-md rounded-md h-12 relative overflow-hidden">
+      <div className="mx-4 bg-background border  search md:w-[400px] shadow-md rounded-md h-12 relative overflow-hidden">
         <Input
           placeholder="Search"
-          className="h-full px-10 text-lg font-medium border-none focus:bg-white focus:outline-none"
+          className="h-full px-10 text-lg font-medium border-none focus:outline-none"
         />
         <SearchIcon
           className="absolute top-3.5 left-2 text-foreground"
