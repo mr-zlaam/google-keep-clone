@@ -67,22 +67,24 @@ function Profile() {
             !
           </h1>
           <Link
-            className="flex items-center justify-center py-2 mx-auto text-sm text-blue-500 transition-all duration-300 border rounded-full hover:bg-background/80 px-7 w-fit border-foreground/60"
+            className="flex items-center justify-center py-2 mx-auto my-4 text-sm text-blue-500 transition-all duration-300 border rounded-full hover:bg-background/80 px-7 w-fit border-foreground/60"
             to={"https://myaccount.google.com/"}
           >
             <span>Manage Your Google Account</span>
           </Link>
           <div className="flex items-center mx-auto my-4 overflow-hidden border rounded-full border-foreground/10 w-fit">
-            <Button
-              variant={"outline"}
-              className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-transparent "
-            >
-              <Plus className="mx-2" /> Add Another Account
-            </Button>
+            <Link to={"https://accounts.google.com/"} target="_blank">
+              <Button
+                variant={"outline"}
+                className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-foreground/5 "
+              >
+                <Plus className="mx-2" /> Add Another Account
+              </Button>
+            </Link>
             <div className="w-[1px] bg-foreground/10 h-full" />
             <Button
               variant={"outline"}
-              className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-transparent"
+              className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-foreground/5"
             >
               <LogOut className="mx-2" /> Sign out
             </Button>
