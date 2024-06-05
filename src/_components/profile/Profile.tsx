@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { GetName } from "./components/GetName";
 import { LogOut, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 function Profile() {
   const [userDetails, setUserDetails] = useState<null | UserTypes>(null);
   const [isCardOpen, setIsCardOpen] = useState<boolean>(false);
@@ -65,16 +66,23 @@ function Profile() {
               "John Doe".split(" ")[0]}
             !
           </h1>
+          <Link
+            className="flex items-center justify-center py-2 mx-auto text-sm text-blue-500 transition-all duration-300 border rounded-full hover:bg-background/80 px-7 w-fit border-foreground/60"
+            to={"https://myaccount.google.com/"}
+          >
+            <span>Manage Your Google Account</span>
+          </Link>
           <div className="flex items-center mx-auto my-4 overflow-hidden border rounded-full border-foreground/10 w-fit">
             <Button
               variant={"outline"}
-              className="flex items-center px-4 transition-all duration-200 bg-transparent border-r border-none rounded py-7 hover:bg-background "
+              className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-transparent "
             >
               <Plus className="mx-2" /> Add Another Account
             </Button>
+            <div className="w-[1px] bg-foreground/10 h-full" />
             <Button
               variant={"outline"}
-              className="flex items-center px-4 transition-all duration-200 bg-transparent border-r border-none rounded py-7 hover:bg-background"
+              className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-transparent"
             >
               <LogOut className="mx-2" /> Sign out
             </Button>
