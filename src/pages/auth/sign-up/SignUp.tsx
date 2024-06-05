@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card";
 import {
   createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
@@ -83,9 +85,13 @@ export default function SignUp() {
     }
     return error;
   };
-  const isUserLogin = cookie.get("uid");
+  const existingUidOnCookie = cookie.get("uid") as string;
   useEffect(() => {
-    if (isUserLogin) return navigate("/");
+    if (!existingUidOnCookie || existingUidOnCookie?.trim() === "") return;
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (existingUidOnCookie === user?.uid) return navigate("/");
+    });
   }, []);
   const handleLoginWithGoogle = async () => {
     try {
