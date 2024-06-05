@@ -10,10 +10,10 @@ export const useLoginChecker = () => {
   const auth = getAuth();
   const uidFromCookie = cookie.get("uid");
   useEffect(() => {
-    if (!uidFromCookie) return navigate("/auth/user/sign-up");
+    if (!uidFromCookie) return navigate("/auth/user/login");
     onAuthStateChanged(auth, (user) => {
       if (user?.uid === uidFromCookie) setIsLogin(true);
-      else return navigate("/auth/user/sign-up");
+      else return navigate("/auth/user/login");
     });
   }, []);
   return isLogin;
