@@ -42,7 +42,7 @@ export default function Login() {
   };
 
   return (
-    <main className="flex items-center justify-center w-full h-screen select-none bg-primary">
+    <main className="flex items-center justify-center w-full h-screen select-none bg-background">
       <button
         onClick={handleLoginWithGoogle}
         className="flex items-center text-2xl transition-all duration-300 border rounded-lg p-7 bg-foreground text-background hover:scale-110 active:scale-75"

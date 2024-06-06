@@ -6,7 +6,7 @@ import { routes } from "./routes/routes.tsx";
 import { ThemeProvider } from "./_components/theme/theme-provider.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme="light" storageKey="theme">
+    <ThemeProvider defaultTheme="dark" storageKey="theme">
       <RouterProvider router={routes} />
     </ThemeProvider>
   </React.StrictMode>

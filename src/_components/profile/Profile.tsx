@@ -24,7 +24,7 @@ function Profile() {
     try {
       await signOut(Auth);
       cookie.remove("uid");
-      return navigate("auth/user/login");
+      return navigate("/auth/user/login");
     } catch (error: any) {
       console.log(error.message);
     }
