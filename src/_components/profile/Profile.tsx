@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { auth as Auth } from "@/backend/db/firebase.config";
 import Cookies from "universal-cookie";
+import { useMessage } from "@/hooks/useMessage";
 function Profile() {
   const cookie = new Cookies();
   const navigate = useNavigate();
+  const { successMessage, errorMessage } = useMessage();
   const [userDetails, setUserDetails] = useState<null | UserTypes>(null);
   const [isCardOpen, setIsCardOpen] = useState<boolean>(false);
   const auth = getAuth();
@@ -24,9 +26,13 @@ function Profile() {
     try {
       await signOut(Auth);
       cookie.remove("uid");
+      successMessage(
+        `${userDetails?.displayName || "User"} logout successfully!!`
+      );
       return navigate("/auth/user/login");
     } catch (error: any) {
       console.log(error.message);
+      return errorMessage("unable to logout for unknown reason!!");
     }
   };
   return (

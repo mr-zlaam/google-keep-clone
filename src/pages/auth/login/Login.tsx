@@ -7,10 +7,11 @@ import { FaGoogle } from "react-icons/fa";
 import { UserTypes } from "@/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMessage } from "@/hooks/useMessage";
 export default function Login() {
   const cookie = new Cookies();
   const navigate = useNavigate();
-
+  const { errorMessage, successMessage } = useMessage();
   const existingUidOnCookie = cookie.get("uid") as string;
   useEffect(() => {
     if (!existingUidOnCookie || existingUidOnCookie?.trim() === "") return;
@@ -26,7 +27,7 @@ export default function Login() {
         const user: UserTypes = registerUser.user;
         const uid = user.uid;
 
-        alert("Logged in Successfully");
+        successMessage(`${user.displayName || "User"} Signed in Successfully.`);
         cookie.set("uid", uid, {
           maxAge: 1000 * 60 * 1000,
         });
@@ -35,9 +36,9 @@ export default function Login() {
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log(error.message);
-        return error.message;
+        return errorMessage("something went wrong while signing !!");
       }
-      return error;
+      return errorMessage("unknown error occured!!");
     }
   };
 
