@@ -8,12 +8,15 @@ import { UserTypes } from "@/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMessage } from "@/hooks/useMessage";
+import useFirstVisit from "@/hooks/useFirsVisit";
 export default function Login() {
   const cookie = new Cookies();
   const navigate = useNavigate();
   const { errorMessage, successMessage } = useMessage();
+  const isFirstVisit = useFirstVisit();
   const existingUidOnCookie = cookie.get("uid") as string;
   useEffect(() => {
+    if (!isFirstVisit) errorMessage("You have to login first...");
     if (!existingUidOnCookie || existingUidOnCookie?.trim() === "") return;
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -46,7 +49,7 @@ export default function Login() {
     <main className="flex items-center justify-center w-full h-screen select-none bg-background">
       <button
         onClick={handleLoginWithGoogle}
-        className="flex items-center text-2xl transition-all duration-300 border rounded-lg p-7 bg-foreground text-background hover:scale-110 active:scale-75"
+        className="flex items-center text-2xl transition-all duration-300 rounded-lg shadow-2xl shadow-foreground/50 p-7 bg-foreground text-background hover:scale-110 active:scale-75"
       >
         <FaGoogle size={40} />
         <span className="mx-4">Continue with Google</span>
