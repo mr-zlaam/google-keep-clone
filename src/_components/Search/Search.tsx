@@ -2,6 +2,8 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search as SearchIcon, X as DeleteIcon } from "lucide-react";
 import DivWrapper from "../DivWrapper/DivWrapper";
+import { useTheme } from "../theme/theme-provider";
+import { cn } from "@/lib/utils";
 
 function Search() {
   const [searchData, setSearchData] = useState("");
@@ -9,17 +11,25 @@ function Search() {
     const newData = e.target.value;
     setSearchData(newData);
   };
+  const { theme } = useTheme();
   return (
     <>
-      <div className="mx-4 bg-background   search md:w-[400px]  rounded-md h-12 relative overflow-hidden">
+      <div
+        className={cn(
+          "mx-4 bg-background   search md:w-[400px]  rounded-md h-12 relative overflow-hidden"
+        )}
+      >
         <Input
           value={searchData}
           onChange={handleOnChange}
           placeholder="Search"
-          className="h-full px-12 text-lg font-medium border border-foreground/60 focus:border-2"
+          className={cn(
+            "h-full pl-16 pr-12 text-lg font-medium  focus:bg-background focus:boreder focus:border-foreground/40 ",
+            theme === "dark" ? "bg-[#525355] text-white" : "bg-[#F0F3F5]"
+          )}
         />
         <SearchIcon
-          className="absolute top-3.5 left-2 text-foreground"
+          className="absolute top-3.5 left-5  text-foreground"
           size={20}
         />
         {searchData.length > 0 && (

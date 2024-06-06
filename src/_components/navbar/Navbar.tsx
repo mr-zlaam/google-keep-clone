@@ -23,6 +23,7 @@ function Navbar() {
           <Profile />
         </div>
       </header>
+      <hr />
     </>
   );
 }
