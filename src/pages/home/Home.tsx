@@ -1,7 +1,10 @@
+import { auth } from "@/backend/db/firebase.config";
 import { Card } from "@/components/ui/card";
 import {} from "react";
 
 function Home() {
+  const currentUser = auth.currentUser;
+  console.log(currentUser?.photoURL);
   return (
     <>
       <section className="grid justify-center grid-cols-1 px-5 md:grid-cols-2 lg:grid-cols-3">

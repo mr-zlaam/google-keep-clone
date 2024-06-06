@@ -60,6 +60,8 @@ function Profile() {
           {userDetails?.photoURL ? (
             <img
               src={userDetails?.photoURL}
+              height={100}
+              width={100}
               alt={userDetails?.displayName as string}
               className="object-contain w-auto h-auto rounded-full"
             />
@@ -88,6 +90,8 @@ function Profile() {
                 src={userDetails?.photoURL || ""}
                 alt={userDetails.displayName as string}
                 className="object-contain w-auto h-auto mx-auto rounded-full"
+                height={100}
+                width={100}
               />
             </div>
             <h1 className="text-2xl font-medium text-center">
