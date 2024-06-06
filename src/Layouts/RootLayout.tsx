@@ -21,9 +21,9 @@ function RootLayout() {
           {isLogin && <Outlet />}
         </main>
       ) : (
-        <div className="flex items-center justify-center h-screen bg-foreground">
+        <div className="flex items-center justify-center h-screen bg-background">
           <h1 className="text-4xl font-bold text-red-500">
-            You are offline please connect to the internet!!
+            You can&apos;t access data without internet!!
           </h1>
         </div>
       )}

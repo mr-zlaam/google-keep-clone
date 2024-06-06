@@ -28,10 +28,11 @@ function Profile() {
     });
     return () => unsubscribe();
   }, []);
+
   const handleLogout = async () => {
     try {
-      await signOut(Auth);
       cookie.remove("uid");
+      await signOut(Auth);
       successMessage(
         `${userDetails?.displayName || "User"} logout successfully!!`
       );
