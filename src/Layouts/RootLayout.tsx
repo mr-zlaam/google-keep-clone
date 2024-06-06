@@ -5,9 +5,9 @@ import { useLoginChecker } from "@/protectedRoute";
 import { Outlet } from "react-router-dom";
 
 function RootLayout() {
-  const { isLogin, loading } = useLoginChecker();
+  const { isLogin, isLoading } = useLoginChecker();
   const isOnline = useOnlineStatus();
-  if (loading)
+  if (isLoading)
     return (
       <div className="flex items-center justify-center h-screen">
         <Loader />
