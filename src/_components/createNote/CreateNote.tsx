@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import DivWrapper from "../DivWrapper/DivWrapper";
 import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function CreateNote() {
   const [isNoteOpen, setIsNoteOpen] = useState(false);
@@ -45,8 +46,9 @@ function CreateNote() {
               name="note"
               id="note"
               placeholder="Take a note..."
-              className="h-full px-4 py-4 outline-none resize-none bg-background min-h-[70dvh]"
+              className="h-full px-4 py-4 my-7 outline-none resize-none bg-background min-h-[70dvh]"
             />
+            <Button className="absolute py-4 bottom-2 right-4">Save</Button>
           </div>
         </div>
       )}
