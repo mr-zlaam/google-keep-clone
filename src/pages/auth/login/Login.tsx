@@ -4,19 +4,21 @@ import Cookies from "universal-cookie";
 import { getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { FaGoogle } from "react-icons/fa";
 
+import { useMessage } from "@/hooks/useMessage";
+import usePreviousRoute from "@/hooks/usePreviousRoute";
 import { UserTypes } from "@/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMessage } from "@/hooks/useMessage";
-import useFirstVisit from "@/hooks/useFirsVisit";
 export default function Login() {
   const cookie = new Cookies();
   const navigate = useNavigate();
   const { errorMessage, successMessage } = useMessage();
-  const isFirstVisit = useFirstVisit();
   const existingUidOnCookie = cookie.get("uid") as string;
+  const prevRoute = usePreviousRoute();
+  console.log(prevRoute);
   useEffect(() => {
-    if (!isFirstVisit) errorMessage("You have to login first...");
+    if (prevRoute.pathname !== "/auth/user/login")
+      errorMessage("You have to login first...");
     if (!existingUidOnCookie || existingUidOnCookie?.trim() === "") return;
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
