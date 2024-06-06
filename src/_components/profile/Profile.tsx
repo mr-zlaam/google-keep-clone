@@ -1,12 +1,16 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import type { UserTypes } from "@/types";
 import { Card } from "@/components/ui/card";
 import { GetName } from "./components/GetName";
 import { LogOut, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth as Auth } from "@/backend/db/firebase.config";
+import Cookies from "universal-cookie";
 function Profile() {
+  const cookie = new Cookies();
+  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState<null | UserTypes>(null);
   const [isCardOpen, setIsCardOpen] = useState<boolean>(false);
   const auth = getAuth();
@@ -16,6 +20,15 @@ function Profile() {
     });
     return () => unsubscribe();
   }, []);
+  const handleLogout = async () => {
+    try {
+      await signOut(Auth);
+      cookie.remove("uid");
+      return navigate("auth/user/login");
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
   return (
     <>
       {isCardOpen && (
@@ -84,6 +97,7 @@ function Profile() {
             </Link>
             <div className="w-[1px] bg-foreground/10 h-full" />
             <Button
+              onClick={handleLogout}
               variant={"outline"}
               className="flex items-center px-4 transition-all duration-200 border-none rounded-none bg-background py-7 hover:bg-foreground/5"
             >
