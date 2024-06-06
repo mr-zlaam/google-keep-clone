@@ -9,7 +9,7 @@ function Navbar() {
     <>
       <header className="h-[80px] w-full bg-background shadow-md text-foreground flex justify-around items-center ">
         <h1>
-          <Link to="/">
+          <Link to="/" className="select-none">
             <img
               src="https://justzlaam.netlify.app/_next/image?url=%2Flogo%2Fimage.png&w=96&q=75"
               alt="Z-Notes"
