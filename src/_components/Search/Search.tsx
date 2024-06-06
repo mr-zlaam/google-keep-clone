@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import {} from "react";
 import { Search as SearchIcon, X } from "lucide-react";
+import DivWrapper from "../DivWrapper/DivWrapper";
 
 function Search() {
   return (
@@ -14,10 +15,9 @@ function Search() {
           className="absolute top-3.5 left-2 text-foreground"
           size={20}
         />
-        <X
-          className="absolute cursor-pointer top-3.5 right-3 text-foreground"
-          size={20}
-        />
+        <DivWrapper className="absolute top-2.5 right-0 cursor-pointer text-foreground h-[30px] w-[30px]">
+          <X className="" size={20} />
+        </DivWrapper>
         {/*show only when something is wrriten*/}
       </div>
     </>
