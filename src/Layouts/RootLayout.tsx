@@ -1,11 +1,18 @@
+import Loader from "@/_components/loding/Loader";
 import Navbar from "@/_components/navbar/Navbar";
 import useOnlineStatus from "@/hooks/useStatus";
 import { useLoginChecker } from "@/protectedRoute";
 import { Outlet } from "react-router-dom";
 
 function RootLayout() {
-  const isLogin = useLoginChecker();
+  const { isLogin, loading } = useLoginChecker();
   const isOnline = useOnlineStatus();
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
   return (
     <>
       {isOnline ? (

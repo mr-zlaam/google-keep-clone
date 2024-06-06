@@ -5,6 +5,8 @@ import Cookies from "universal-cookie";
 
 export const useLoginChecker = () => {
   const cookie = new Cookies();
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const auth = getAuth();
@@ -14,7 +16,8 @@ export const useLoginChecker = () => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid === uidFromCookie) setIsLogin(true);
       else return navigate("/auth/user/login");
+      setLoading(false);
     });
   }, []);
-  return isLogin;
+  return { isLogin, loading };
 };
