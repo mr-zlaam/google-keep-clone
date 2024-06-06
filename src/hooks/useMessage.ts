@@ -4,7 +4,7 @@ export const useMessage = () => {
   const successMessage = (message: string) => {
     toast.success(message, {
       duration: 3000,
-      className: "text-green-500",
+      className: "text-green-800",
       position: "top-center",
     });
   };
