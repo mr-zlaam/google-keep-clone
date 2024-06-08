@@ -90,7 +90,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
                 type="text"
                 readOnly
                 placeholder="Take a note..."
-                className="w-full px-4 py-4 outline-none cursor-pointer bg-background placeholder:text-foreground/80"
+                className="w-full px-4 py-4 outline-none bg-background placeholder:text-foreground/80"
               />
             </div>
           </div>
