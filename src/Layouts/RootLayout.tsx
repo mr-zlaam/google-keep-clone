@@ -1,4 +1,4 @@
-import Loader from "@/_components/loding/Loader";
+import Loader from "@/_components/loading/Loader";
 import Navbar from "@/_components/navbar/Navbar";
 // import useOnlineStatus from "@/hooks/useStatus"; //**TODO:on this thing in production */
 import { useLoginChecker } from "@/protectedRoute";

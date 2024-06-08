@@ -10,7 +10,7 @@ import { auth as Auth } from "@/backend/db/firebase.config";
 import Cookies from "universal-cookie";
 import { useMessage } from "@/hooks/useMessage";
 import useLoading from "@/hooks/useLoading";
-import Loader from "../loding/Loader";
+import Loader from "../loading/Loader";
 function Profile() {
   const cookie = new Cookies();
   const navigate = useNavigate();
