@@ -26,6 +26,11 @@ function Home() {
   return (
     <>
       <CreateNote setIsUploaded={setIsUploaded} />
+      {data?.length === 0 && (
+        <main className="h-[70dvh] flex justify-center items-center">
+          <h1 className="text-3xl font-bold text-red-500"> No Notes Found!~</h1>
+        </main>
+      )}
       {isLoading && (
         <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
           <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
@@ -35,8 +40,8 @@ function Home() {
         {data &&
           data.map((note) => (
             <Fragment key={note.id}>
-              <Card className="h-[400px] bg-background shadow-lg cursor-pointer p-3 m-3">
-                <h2 className="text-lg">{note.title}</h2>
+              <Card className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3">
+                <h2 className="my-3 text-lg font-semibold">{note.title}</h2>
                 <p className="text-sm">{note.description}</p>
               </Card>
             </Fragment>

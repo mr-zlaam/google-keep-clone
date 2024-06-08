@@ -100,7 +100,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
           </div>
         )}
         {isNoteOpen && (
-          <div className="relative max-w-md px-3 mx-auto md:max-w-xl ">
+          <div className="relative max-w-md px-3 mx-auto md:max-w-xl">
             <DivWrapper
               className="block md:hidden  absolute top-5 right-[-20px] z-[101]"
               onClick={() => {
@@ -110,16 +110,17 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
               <X />
             </DivWrapper>
             <form onSubmit={handleSubmit}>
-              {" "}
-              {/* Wrap your content with form */}
-              <div className="h-fit absolute uppercase  w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40">
+              <div
+                className=" absolute   w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
+             min-h-[70dvh]"
+              >
                 <input
                   onChange={handleChange}
                   value={data.title}
                   type="text"
                   name="title"
                   placeholder="Title"
-                  className="p-4 my-2 font-semibold outline-none text-foreground bg-background"
+                  className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
                 />
                 <hr />
                 <textarea
@@ -127,7 +128,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
                   name="description"
                   id="note"
                   placeholder="Take a note..."
-                  className="h-full px-4 py-4 my-7 outline-none resize-none bg-background min-h-[70dvh]"
+                  className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
                   value={data.description}
                 />
                 <Button
