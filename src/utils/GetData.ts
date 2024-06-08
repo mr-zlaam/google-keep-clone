@@ -1,15 +1,21 @@
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/backend/db/firebase.config";
+import { auth, db } from "@/backend/db/firebase.config";
 
+interface UploadedByTypes {
+  id: string;
+  name: string;
+}
 interface Note {
   id: string;
   title: string;
   description: string;
   time: any;
+  uploadedBy: UploadedByTypes;
 }
 
 export const collectionRef = collection(db, "notes");
 export async function GetData(sortBy?: keyof Note): Promise<Note[]> {
+  const currentUser = auth?.currentUser;
   try {
     const response = await getDocs(collectionRef);
     let notesData: Note[] = [];
@@ -32,7 +38,9 @@ export async function GetData(sortBy?: keyof Note): Promise<Note[]> {
       });
     }
 
-    return notesData;
+    return notesData.filter(
+      (notes) => currentUser?.uid === notes.uploadedBy.id
+    );
   } catch (error: any) {
     console.log(error.message);
     return []; // Return empty array if error occurs
