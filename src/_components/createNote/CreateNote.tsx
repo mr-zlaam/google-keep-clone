@@ -3,7 +3,7 @@ import { useMessage } from "@/hooks/useMessage";
 import { GetData, collectionRef } from "@/utils/GetData";
 import { Timestamp, addDoc } from "firebase/firestore";
 import { X } from "lucide-react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import DivWrapper from "../DivWrapper/DivWrapper";
 import useLoading from "@/hooks/useLoading";
 import Loader from "../loading/Loader";
@@ -61,6 +61,13 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
       console.log(error.message);
     }
   };
+  useEffect(() => {
+    if (isNoteOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isNoteOpen]);
   return (
     <Fragment>
       {isLoading && (
@@ -110,6 +117,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
                   placeholder="Title"
                   className="p-4 my-2 font-semibold outline-none text-foreground bg-background"
                 />
+                <hr />
                 <textarea
                   onChange={handleChange}
                   name="description"

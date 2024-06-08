@@ -42,6 +42,13 @@ function Profile() {
       return errorMessage("unable to logout for unknown reason!!");
     }
   };
+  useEffect(() => {
+    if (isCardOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isCardOpen]);
   return (
     <>
       {isCardOpen && (
