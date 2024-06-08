@@ -51,7 +51,7 @@ export default function Login() {
     <main className="flex items-center justify-center w-full h-screen select-none bg-background">
       <button
         onClick={handleLoginWithGoogle}
-        className="flex items-center text-2xl transition-all duration-300 rounded-lg shadow-2xl shadow-foreground/50 p-7 bg-foreground text-background hover:scale-110 active:scale-75"
+        className="flex items-center text-2xl transition-all duration-300 rounded-lg shadow-2xl cursor-default shadow-foreground/50 p-7 bg-foreground text-background hover:scale-110 active:scale-75"
       >
         <FaGoogle size={40} />
         <span className="mx-4">Continue with Google</span>
