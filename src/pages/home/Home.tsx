@@ -5,11 +5,13 @@ import useLoading from "@/hooks/useLoading";
 import { Note } from "@/types";
 import { GetData } from "@/utils/GetData";
 import { Fragment, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const { isLoading, startLoading, stopLoading } = useLoading();
   const [data, setData] = useState<null | Note[]>(null);
   const [isUploaded, setIsUploaded] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
       startLoading();
@@ -23,6 +25,9 @@ function Home() {
     getData();
   }, [isUploaded]);
   console.log(data);
+  const GotToSlugPage = (pathname: string) => {
+    return navigate(`/1/${pathname}`);
+  };
   return (
     <>
       <CreateNote setIsUploaded={setIsUploaded} />
@@ -40,7 +45,12 @@ function Home() {
         {data &&
           data.map((note) => (
             <Fragment key={note.id}>
-              <Card className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3">
+              <Card
+                onClick={() => {
+                  GotToSlugPage(note.slug);
+                }}
+                className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3"
+              >
                 <h2 className="my-3 text-lg font-semibold">{note.title}</h2>
                 <p className="text-sm">{note.description}</p>
               </Card>
