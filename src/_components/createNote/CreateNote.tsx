@@ -1,16 +1,61 @@
+import { Button } from "@/components/ui/button";
+import { useMessage } from "@/hooks/useMessage";
+import { GetData, collectionRef } from "@/utils/GetData";
+import { Timestamp, addDoc } from "firebase/firestore";
+import { X } from "lucide-react";
 import { Fragment, useState } from "react";
 import DivWrapper from "../DivWrapper/DivWrapper";
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 function CreateNote() {
+  const { errorMessage, successMessage } = useMessage();
   const [isNoteOpen, setIsNoteOpen] = useState(false);
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Collection reference
+
+  // Handle upload data
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<any> => {
+    e.preventDefault();
+    if (!data.title || !data.description)
+      return errorMessage("All fields are required!!");
+
+    const newData = {
+      title: data.title,
+      description: data.description,
+      time: Timestamp.now(),
+    };
+
+    try {
+      const response = await addDoc(collectionRef, newData);
+      await GetData("title");
+      console.log(await GetData("title"));
+      successMessage("Note uploaded successfully");
+      return response;
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <Fragment>
       {isNoteOpen && (
         <div
           onClick={() => setIsNoteOpen(false)}
-          className="before:fixed z-[99] before:h-screen before: before:w-full before:bg-foreground/5 before:top-0 before:left-0"
+          className="before:fixed z-[99] before:h-screen before:w-full before:bg-foreground/5 before:top-0 before:left-0"
         />
       )}
       {!isNoteOpen && (
@@ -36,20 +81,31 @@ function CreateNote() {
           >
             <X />
           </DivWrapper>
-          <div className="h-fit absolute  w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40">
-            <input
-              type="text"
-              placeholder="Title"
-              className="p-4 my-2 font-semibold outline-none text-foreground bg-background"
-            />
-            <textarea
-              name="note"
-              id="note"
-              placeholder="Take a note..."
-              className="h-full px-4 py-4 my-7 outline-none resize-none bg-background min-h-[70dvh]"
-            />
-            <Button className="absolute py-4 bottom-2 right-4">Save</Button>
-          </div>
+          <form onSubmit={handleSubmit}>
+            {" "}
+            {/* Wrap your content with form */}
+            <div className="h-fit absolute  w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40">
+              <input
+                onChange={handleChange}
+                value={data.title.toUpperCase()}
+                type="text"
+                name="title"
+                placeholder="Title"
+                className="p-4 my-2 font-semibold outline-none text-foreground bg-background"
+              />
+              <textarea
+                onChange={handleChange}
+                name="description"
+                id="note"
+                placeholder="Take a note..."
+                className="h-full px-4 py-4 my-7 outline-none resize-none bg-background min-h-[70dvh]"
+                value={data.description}
+              />
+              <Button className="absolute py-4 bottom-2 right-4" type="submit">
+                Save
+              </Button>
+            </div>
+          </form>
         </div>
       )}
     </Fragment>
