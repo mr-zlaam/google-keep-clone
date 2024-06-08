@@ -8,6 +8,8 @@ import DivWrapper from "../DivWrapper/DivWrapper";
 import useLoading from "@/hooks/useLoading";
 import Loader from "../loading/Loader";
 import { auth } from "@/backend/db/firebase.config";
+import { useSlugGenerator } from "@/hooks/useSlugGenerator";
+import { useRandomStringGenerator } from "@/hooks/useRandomStringGenerator";
 interface CreateNoteProp {
   setIsUploaded: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -39,10 +41,12 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
     e.preventDefault();
     if (!data.title || !data.description)
       return errorMessage("All fields are required!!");
-
+    const slug = useSlugGenerator(data.title);
+    const randomStr = useRandomStringGenerator(10);
     const newData = {
       title: data.title.toUpperCase(),
       description: data.description,
+      slug: slug + "%" + randomStr,
       time: Timestamp.now(),
       uploadedBy: currentUser,
     };

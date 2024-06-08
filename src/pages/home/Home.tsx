@@ -14,6 +14,7 @@ function Home() {
     const getData = async () => {
       startLoading();
       const response = await GetData();
+      console.log(response);
       setData(response);
       stopLoading();
       setIsUploaded(false);
