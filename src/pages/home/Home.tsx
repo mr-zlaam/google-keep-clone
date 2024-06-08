@@ -1,8 +1,19 @@
 import CreateNote from "@/_components/createNote/CreateNote";
 import { Card } from "@/components/ui/card";
-import {} from "react";
+import { Note } from "@/types";
+import { GetData } from "@/utils/GetData";
+import { useEffect, useState } from "react";
 
 function Home() {
+  const [data, setData] = useState<null | Note[]>(null);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await GetData();
+      setData(response);
+    };
+    getData();
+  }, []);
+  console.log(data);
   return (
     <>
       <CreateNote />

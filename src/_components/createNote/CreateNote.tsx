@@ -39,7 +39,7 @@ function CreateNote() {
       return errorMessage("All fields are required!!");
 
     const newData = {
-      title: data.title,
+      title: data.title.toUpperCase(),
       description: data.description,
       time: Timestamp.now(),
       uploadedBy: currentUser,

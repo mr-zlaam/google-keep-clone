@@ -1,17 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "@/backend/db/firebase.config";
-
-interface UploadedByTypes {
-  id: string;
-  name: string;
-}
-interface Note {
-  id: string;
-  title: string;
-  description: string;
-  time: any;
-  uploadedBy: UploadedByTypes;
-}
+import { Note } from "@/types";
 
 export const collectionRef = collection(db, "notes");
 export async function GetData(sortBy?: keyof Note): Promise<Note[]> {
