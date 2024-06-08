@@ -8,8 +8,10 @@ import DivWrapper from "../DivWrapper/DivWrapper";
 import useLoading from "@/hooks/useLoading";
 import Loader from "../loading/Loader";
 import { auth } from "@/backend/db/firebase.config";
-
-function CreateNote() {
+interface CreateNoteProp {
+  setIsUploaded: React.Dispatch<React.SetStateAction<boolean>>;
+}
+function CreateNote({ setIsUploaded }: CreateNoteProp) {
   const { errorMessage, successMessage } = useMessage();
   const [isNoteOpen, setIsNoteOpen] = useState(false);
   const { isLoading, startLoading, stopLoading } = useLoading();
@@ -44,16 +46,16 @@ function CreateNote() {
       time: Timestamp.now(),
       uploadedBy: currentUser,
     };
-    // if (currentUser)
-    //   return errorMessage("You aren't elible of create note somehow.");
+
     try {
       startLoading();
       setIsNoteOpen(false);
       const response = await addDoc(collectionRef, newData);
       await GetData("title");
-      console.log(await GetData("title"));
+      setIsUploaded(true);
       stopLoading();
       successMessage("Note uploaded successfully");
+      setData({ title: "", description: "" });
       return response;
     } catch (error: any) {
       console.log(error.message);
@@ -99,7 +101,7 @@ function CreateNote() {
             <form onSubmit={handleSubmit}>
               {" "}
               {/* Wrap your content with form */}
-              <div className="h-fit absolute  w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40">
+              <div className="h-fit absolute uppercase  w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40">
                 <input
                   onChange={handleChange}
                   value={data.title}
