@@ -46,7 +46,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
     const newData = {
       title: data.title.toUpperCase(),
       description: data.description,
-      slug: slug + "%" + randomStr,
+      slug: slug + "_" + randomStr,
       time: Timestamp.now(),
       uploadedBy: currentUser,
     };
