@@ -49,7 +49,7 @@ function Home() {
                 onClick={() => {
                   GotToSlugPage(note.slug);
                 }}
-                className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3"
+                className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3 duration-200 transition-all hover:bg-foreground/5"
               >
                 <h2 className="my-3 text-lg font-semibold line-clamp-2 text-clip">
                   {note.title}

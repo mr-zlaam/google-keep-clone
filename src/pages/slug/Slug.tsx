@@ -36,22 +36,25 @@ function Slug() {
     fetchSingleNote();
   }, [slug]);
   return (
-    <>
-      <DivWrapper className="fixed left-5 top-5" onClick={() => navigate("/")}>
+    <main className="h-screen px-3 overflow-hidden">
+      <DivWrapper
+        className="fixed left-5 top-2 lg:top-5"
+        onClick={() => navigate("/")}
+      >
         <MdKeyboardArrowLeft size={30} />
       </DivWrapper>
 
       {note ? (
-        <section className=" bg-background max-w-2xl mx-auto  min-h-[80dvh] z-[10] relative top-20 border border-foreground/50 rounded-md overflow-hidden">
-          <div className="min-h-[70dvh] overflow-auto px-3 py-5 ">
-            <h1 className="my-4 text-2xl font-semibold leading-[3] tracking-wide text-balance">
+        <section className=" bg-background max-w-2xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md overflow-hidden">
+          <div className="max-h-[80dvh] min-h-[70dvh] overflow-auto px-3 py-2 ">
+            <h1 className="my-4 text-2xl font-semibold leading-[1.4] tracking-wide text-balance">
               {note && note.title}
             </h1>
-            <p className="my-4 text-lg text-balance">
+            <p className="my-4 text-lg text-balance leading-[2]">
               {note && note.description}
             </p>
           </div>
-          <div className="absolute bottom-0 flex justify-end w-full p-5 ">
+          <div className="absolute bottom-0 flex justify-end w-full p-5 bg-background ">
             <Button className="mx-5">edit</Button>
             <Button className="mx-5">delete</Button>
           </div>
@@ -63,7 +66,7 @@ function Slug() {
           </div>
         )
       )}
-    </>
+    </main>
   );
 }
 
