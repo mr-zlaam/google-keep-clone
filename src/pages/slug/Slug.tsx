@@ -3,6 +3,7 @@ import Loader from "@/_components/loading/Loader";
 import useLoading from "@/hooks/useLoading";
 import { useMessage } from "@/hooks/useMessage";
 import { Note } from "@/types";
+import DeleteNote from "@/utils/DeleteData";
 import { GetSingleNote } from "@/utils/GetSingleNote";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
@@ -35,6 +36,17 @@ function Slug() {
   useEffect(() => {
     fetchSingleNote();
   }, [slug]);
+  const deleteNote = async () => {
+    try {
+      await DeleteNote(note?.id ? note.id : ("" as string));
+      return navigate("/");
+    } catch (error: any) {
+      if (error instanceof Error)
+        errorMessage(
+          error.message || "something went wrong while deleteing data"
+        );
+    }
+  };
   return (
     <main className="h-screen px-3 overflow-hidden">
       <DivWrapper
@@ -58,7 +70,7 @@ function Slug() {
             <DivWrapper className="mx-4">
               <FaEdit size={25} className="" />
             </DivWrapper>
-            <DivWrapper className="mx-4">
+            <DivWrapper className="mx-4" onClick={deleteNote}>
               <MdDelete size={25} className="" />
             </DivWrapper>
           </div>
