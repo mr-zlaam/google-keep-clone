@@ -51,8 +51,10 @@ function Home() {
                 }}
                 className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3"
               >
-                <h2 className="my-3 text-lg font-semibold">{note.title}</h2>
-                <p className="text-sm">{note.description}</p>
+                <h2 className="my-3 text-lg font-semibold line-clamp-2 text-clip">
+                  {note.title}
+                </h2>
+                <p className="text-sm line-clamp-6">{note.description}</p>
               </Card>
             </Fragment>
           ))}
