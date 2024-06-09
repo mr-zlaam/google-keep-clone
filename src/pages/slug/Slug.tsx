@@ -1,12 +1,12 @@
 import DivWrapper from "@/_components/DivWrapper/DivWrapper";
 import Loader from "@/_components/loading/Loader";
-import { Button } from "@/components/ui/button";
 import useLoading from "@/hooks/useLoading";
 import { useMessage } from "@/hooks/useMessage";
 import { Note } from "@/types";
 import { GetSingleNote } from "@/utils/GetSingleNote";
 import { useEffect, useState } from "react";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete, MdKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Slug() {
@@ -55,8 +55,12 @@ function Slug() {
             </p>
           </div>
           <div className="absolute bottom-0 flex justify-end w-full p-5 bg-background ">
-            <Button className="mx-5">edit</Button>
-            <Button className="mx-5">delete</Button>
+            <DivWrapper className="mx-4">
+              <FaEdit size={25} className="" />
+            </DivWrapper>
+            <DivWrapper className="mx-4">
+              <MdDelete size={25} className="" />
+            </DivWrapper>
           </div>
         </section>
       ) : (
