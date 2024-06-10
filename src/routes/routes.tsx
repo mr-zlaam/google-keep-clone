@@ -1,10 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
-import Home from "@/pages/home/Home";
-import Login from "@/pages/auth/login/Login";
 import RootLayout from "@/Layouts/RootLayout";
-import ErrorPage from "@/pages/error/ErrorPage";
 import SlugLayout from "@/Layouts/SlugLayout";
+import Login from "@/pages/auth/login/Login";
+import ErrorPage from "@/pages/error/ErrorPage";
+import Home from "@/pages/home/Home";
 import Slug from "@/pages/slug/Slug";
+import UpdateSlug from "@/updateNote/UpdateSlug";
+import { createBrowserRouter } from "react-router-dom";
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -21,12 +22,16 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/1/:slug",
+    path: "",
     element: <SlugLayout />,
     children: [
       {
-        path: "",
+        path: "/1/:slug",
         element: <Slug />,
+      },
+      {
+        path: "/updateNote/:updateSlug",
+        element: <UpdateSlug />,
       },
     ],
   },

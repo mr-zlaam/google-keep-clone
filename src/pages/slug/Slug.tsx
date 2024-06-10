@@ -67,7 +67,12 @@ function Slug() {
             </p>
           </div>
           <div className="absolute bottom-0 flex justify-end w-full p-5 bg-background ">
-            <DivWrapper className="mx-4">
+            <DivWrapper
+              className="mx-4"
+              onClick={() => {
+                navigate(`/updateNote/${slug}`);
+              }}
+            >
               <FaEdit size={25} className="" />
             </DivWrapper>
             <DivWrapper className="mx-4" onClick={deleteNote}>
