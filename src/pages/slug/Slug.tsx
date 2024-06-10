@@ -60,7 +60,7 @@ function Slug() {
         <section className=" bg-background max-w-xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words">
           <div className="">
             <input
-              autoFocus
+              readOnly
               value={note.title}
               type="text"
               name="title"
@@ -69,6 +69,7 @@ function Slug() {
             />
             <hr />
             <textarea
+              readOnly
               value={note.description}
               name="description"
               id="note"

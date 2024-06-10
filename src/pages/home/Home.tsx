@@ -76,7 +76,8 @@ function Home() {
                   {note.title}
                 </h2>
                 <textarea
-                  value={note.description}
+                  readOnly
+                  defaultValue={note.description}
                   className="block w-full h-full my-3 text-sm bg-transparent outline-none cursor-pointer resize-none line-clamp-6"
                 />
               </Card>
