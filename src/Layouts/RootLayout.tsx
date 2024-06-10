@@ -15,7 +15,7 @@ function RootLayout() {
     );
   return (
     <>
-      {!isOnline ? (
+      {isOnline ? (
         <main className="">
           <Navbar />
           {isLogin && <Outlet />}
