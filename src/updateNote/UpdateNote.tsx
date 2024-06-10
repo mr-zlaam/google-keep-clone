@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
-
-function UpdateNote() {
+import { Note } from "@/types";
+interface UpdateNoteProps {
+  noteData: Note | null;
+}
+function UpdateNote({ noteData }: UpdateNoteProps) {
+  console.log(noteData);
   return (
     <main className="h-screen px-3 overflow-hidden">
       <section>
@@ -28,9 +32,6 @@ function UpdateNote() {
           </div>
         </form>
       </section>
-      {/* <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
-        <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
-      </div> */}
     </main>
   );
 }
