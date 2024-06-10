@@ -40,7 +40,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
     if (!data.title || !data.description)
       return errorMessage("All fields are required!!");
     const slug = useSlugGenerator(data.title);
-    const randomStr = useRandomStringGenerator(10);
+    const randomStr = useRandomStringGenerator(15);
     const newData = {
       title: data.title.toUpperCase(),
       description: data.description,
