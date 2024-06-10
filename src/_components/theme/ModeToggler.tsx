@@ -6,7 +6,7 @@ import DivWrapper from "../DivWrapper/DivWrapper";
 export function ModeToggler() {
   const { setTheme, theme } = useTheme();
   return (
-    <>
+    <div className="fixed left-[-20px] sm:static bottom-[200px] z-[102]">
       {theme && theme === "dark" ? (
         <DivWrapper
           onClick={() => {
@@ -24,6 +24,6 @@ export function ModeToggler() {
           <MoonIcon />
         </DivWrapper>
       )}
-    </>
+    </div>
   );
 }

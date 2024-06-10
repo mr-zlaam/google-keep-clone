@@ -16,7 +16,7 @@ function Search() {
     <>
       <div
         className={cn(
-          "mx-4 bg-background   search md:w-[400px]  rounded-md h-12 relative overflow-hidden"
+          "mx-4 bg-background max-w-[500px] rounded-md h-12 relative overflow-hidden"
         )}
       >
         <Input
