@@ -57,14 +57,24 @@ function Slug() {
       </DivWrapper>
 
       {note ? (
-        <section className=" bg-background max-w-2xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words">
-          <div className="max-h-[80dvh] min-h-[70dvh] overflow-auto px-3 py-2 ">
-            <h1 className="my-4 text-2xl font-semibold leading-[1.4] tracking-wide text-balance text-left break-words">
-              {note && note.title}
-            </h1>
-            <p className="my-4 text-lg text-balance text-left leading-[2] break-words">
-              {note && note.description}
-            </p>
+        <section className=" bg-background max-w-xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words">
+          <div className="">
+            <input
+              autoFocus
+              value={note.title}
+              type="text"
+              name="title"
+              placeholder="Title"
+              className="p-4 my-2 font-semibold uppercase bg-transparent outline-none text-foreground placeholder:capitalize"
+            />
+            <hr />
+            <textarea
+              value={note.description}
+              name="description"
+              id="note"
+              placeholder="Take a note..."
+              className="h-[70dvh] w-full  px-4 py-4 outline-none resize-none my-7 bg-transparent"
+            />
           </div>
           <div className="absolute bottom-0 flex justify-end w-full p-5 bg-background ">
             <DivWrapper

@@ -72,10 +72,13 @@ function Home() {
                 }}
                 className="min-h-[350px] bg-background shadow-lg cursor-pointer p-3 m-3 line-clamp-6 py-4 px-3 duration-200 transition-all hover:bg-foreground/5"
               >
-                <h2 className="my-3 text-lg font-semibold line-clamp-2 text-clip">
+                <h2 className="block my-3 text-lg font-semibold line-clamp-2 text-clip">
                   {note.title}
                 </h2>
-                <p className="text-sm line-clamp-6">{note.description}</p>
+                <textarea
+                  value={note.description}
+                  className="block w-full h-full my-3 text-sm bg-transparent outline-none cursor-pointer resize-none line-clamp-6"
+                />
               </Card>
             </Fragment>
           ))}
