@@ -6,7 +6,7 @@ import DivWrapper from "../DivWrapper/DivWrapper";
 export function ModeToggler() {
   const { setTheme, theme } = useTheme();
   return (
-    <div className="fixed left-[-20px] sm:static bottom-[200px] z-[102] sm:z-0">
+    <div className="fixed left-[-10px] sm:static bottom-[200px]  sm:z-0 z-[102]">
       {theme && theme === "dark" ? (
         <DivWrapper
           onClick={() => {
