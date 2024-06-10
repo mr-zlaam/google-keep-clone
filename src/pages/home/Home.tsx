@@ -16,7 +16,6 @@ function Home() {
     const getData = async () => {
       startLoading();
       const response = await GetData();
-      console.log(response);
       setData(response);
       stopLoading();
       setIsUploaded(false);
@@ -24,7 +23,6 @@ function Home() {
     };
     getData();
   }, [isUploaded]);
-  console.log(data);
   const GotToSlugPage = (pathname: string) => {
     return navigate(`/1/${pathname}`);
   };

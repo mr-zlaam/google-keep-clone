@@ -1,20 +1,30 @@
+import Loader from "@/_components/loading/Loader";
+import { auth, db } from "@/backend/db/firebase.config";
 import { Button } from "@/components/ui/button";
+import useLoading from "@/hooks/useLoading";
 import { useMessage } from "@/hooks/useMessage";
+import { useSlugGenerator } from "@/hooks/useSlugGenerator";
 import { Note } from "@/types";
+import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-function UpdateNote({
-  noteData: fetchNoteData,
-  updateSlug,
-}: {
-  noteData: any;
-  updateSlug: string;
-}) {
-  const noteData: Note = fetchNoteData;
-  const { errorMessage } = useMessage();
+import { useNavigate } from "react-router-dom";
+interface UpdateNoteProps {
+  noteData: Note | null;
+  updateSlug?: string;
+}
+function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
+  const { errorMessage, successMessage } = useMessage();
+  const { startLoading, isLoading, stopLoading } = useLoading();
+  const navigate = useNavigate();
   const [updateData, setUpdateData] = useState({
-    title: noteData.title || "",
+    title: noteData?.title || "",
     description: noteData?.description || "",
   });
+  const currentUser = {
+    id: auth?.currentUser?.uid,
+    name: auth?.currentUser?.displayName,
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -33,18 +43,37 @@ function UpdateNote({
     e: React.FormEvent<HTMLFormElement>
   ): Promise<any> => {
     e.preventDefault();
-    const newSlug = updateSlug.split("_")[0];
-    console.log(newSlug);
+    const randomStr = updateSlug?.split("_")[1];
+    const slug = useSlugGenerator(updateData?.title as string);
+    const updateNewData = {
+      title: updateData.title.toUpperCase(),
+      description: updateData.description,
+      slug: slug + "_" + randomStr,
+      time: Timestamp.now(),
+      uploadedBy: currentUser,
+    };
+    const docRef = doc(db, "notes", noteData?.id as string);
+    const { title, description } = updateData;
+    if (!title || !description)
+      return errorMessage("All fields are required!!");
     try {
-      const { title, description } = updateData;
-      if (!title || !description)
-        return errorMessage("All fields are required!!");
+      startLoading();
+      await updateDoc(docRef, updateNewData);
+      successMessage("Note Update successfully");
+      return navigate("/");
     } catch (error: any) {
       console.log(error.message);
+    } finally {
+      stopLoading();
     }
   };
   return (
     <main className="h-screen px-3 overflow-hidden">
+      {isLoading && (
+        <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
+          <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+        </div>
+      )}
       <section>
         <form onSubmit={handleUpdate}>
           <div

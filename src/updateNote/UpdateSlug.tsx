@@ -7,9 +7,11 @@ import useLoading from "@/hooks/useLoading";
 import { GetSingleNote } from "@/utils/GetSingleNote";
 import { Note } from "@/types";
 import Loader from "@/_components/loading/Loader";
+import { useMessage } from "@/hooks/useMessage";
 
 function UpdateSlug() {
   const { updateSlug } = useParams();
+  const { errorMessage } = useMessage();
   const { isLoading, startLoading, stopLoading } = useLoading();
   const [noteData, setNoteData] = useState<Note | null>(null);
   const navigate = useNavigate();
@@ -22,7 +24,10 @@ function UpdateSlug() {
       setNoteData(singleNote);
       return singleNote;
     } catch (error: any) {
-      console.log(error.message);
+      if (error instanceof Error)
+        return errorMessage(
+          error.message || "something went wrong while updating note"
+        );
     } finally {
       stopLoading();
     }

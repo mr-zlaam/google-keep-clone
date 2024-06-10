@@ -62,7 +62,10 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
       setData({ title: "", description: "" });
       return response;
     } catch (error: any) {
-      console.log(error.message);
+      if (error instanceof Error)
+        return errorMessage(
+          error.message || "something went wrong while creating note."
+        );
     }
   };
   useEffect(() => {
