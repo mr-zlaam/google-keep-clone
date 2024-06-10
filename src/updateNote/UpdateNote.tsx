@@ -77,8 +77,8 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
       <section>
         <form onSubmit={handleUpdate}>
           <div
-            className=" relative top-12    w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
-             min-h-[70dvh]"
+            className="relative w-full z-[100] flex flex-col top-14 max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
+          max-h-[84dvh]   md:min-h-[70dvh] "
           >
             <input
               value={updateData.title}

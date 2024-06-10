@@ -1,15 +1,13 @@
+import { auth } from "@/backend/db/firebase.config";
 import { Button } from "@/components/ui/button";
+import useLoading from "@/hooks/useLoading";
 import { useMessage } from "@/hooks/useMessage";
+import { useRandomStringGenerator } from "@/hooks/useRandomStringGenerator";
+import { useSlugGenerator } from "@/hooks/useSlugGenerator";
 import { GetData, collectionRef } from "@/utils/GetData";
 import { Timestamp, addDoc } from "firebase/firestore";
-import { X } from "lucide-react";
 import { Fragment, useEffect, useState } from "react";
-import DivWrapper from "../DivWrapper/DivWrapper";
-import useLoading from "@/hooks/useLoading";
 import Loader from "../loading/Loader";
-import { auth } from "@/backend/db/firebase.config";
-import { useSlugGenerator } from "@/hooks/useSlugGenerator";
-import { useRandomStringGenerator } from "@/hooks/useRandomStringGenerator";
 interface CreateNoteProp {
   setIsUploaded: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -103,46 +101,40 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
           </div>
         )}
         {isNoteOpen && (
-          <div className="relative max-w-md px-3 mx-auto md:max-w-xl">
-            <DivWrapper
-              className="block md:hidden  absolute top-5 right-[-20px] z-[101]"
-              onClick={() => {
-                setIsNoteOpen(false);
-              }}
-            >
-              <X />
-            </DivWrapper>
-            <form onSubmit={handleSubmit}>
-              <div
-                className=" absolute   w-full z-[100] flex flex-col max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
-             min-h-[70dvh]"
-              >
-                <input
-                  onChange={handleChange}
-                  value={data.title}
-                  type="text"
-                  name="title"
-                  placeholder="Title"
-                  className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
-                />
-                <hr />
-                <textarea
-                  onChange={handleChange}
-                  name="description"
-                  id="note"
-                  placeholder="Take a note..."
-                  className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
-                  value={data.description}
-                />
-                <Button
-                  className="absolute py-4 bottom-2 right-4"
-                  type="submit"
+          <>
+            <section className="px-4 py-4">
+              <form onSubmit={handleSubmit}>
+                <div
+                  className=" relative w-full z-[100] flex flex-col max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
+          max-h-[84dvh]   md:min-h-[70dvh] "
                 >
-                  Save
-                </Button>
-              </div>
-            </form>
-          </div>
+                  <input
+                    value={data.title}
+                    onChange={handleChange}
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
+                  />
+                  <hr />
+                  <textarea
+                    value={data.description}
+                    onChange={handleChange}
+                    name="description"
+                    id="note"
+                    placeholder="Take a note..."
+                    className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
+                  />
+                  <Button
+                    className="absolute py-4 bottom-2 right-4"
+                    type="submit"
+                  >
+                    save
+                  </Button>
+                </div>
+              </form>
+            </section>
+          </>
         )}
       </section>
     </Fragment>
