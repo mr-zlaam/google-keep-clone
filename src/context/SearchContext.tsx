@@ -7,7 +7,7 @@ interface SearchContextType {
 const SearchContext = createContext<SearchContextType | null>(null);
 
 const SearchContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [searchItem, setSearchItem] = useState("helloworld");
+  const [searchItem, setSearchItem] = useState("");
   const values = {
     searchItem,
     setSearchItem,
