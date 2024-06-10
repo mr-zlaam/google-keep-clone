@@ -81,6 +81,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
           max-h-[84dvh]   md:min-h-[70dvh] "
           >
             <input
+              autoFocus
               value={updateData.title}
               onChange={handleChange}
               type="text"

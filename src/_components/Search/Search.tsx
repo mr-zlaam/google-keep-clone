@@ -1,15 +1,15 @@
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Search as SearchIcon, X as DeleteIcon } from "lucide-react";
+import { useSearchContext } from "@/context/SearchContext";
+import { cn } from "@/lib/utils";
+import { X as DeleteIcon, Search as SearchIcon } from "lucide-react";
 import DivWrapper from "../DivWrapper/DivWrapper";
 import { useTheme } from "../theme/theme-provider";
-import { cn } from "@/lib/utils";
 
 function Search() {
-  const [searchData, setSearchData] = useState("");
+  const { searchItem, setSearchItem } = useSearchContext();
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newData = e.target.value;
-    setSearchData(newData);
+    setSearchItem(newData);
   };
   const { theme } = useTheme();
   return (
@@ -20,7 +20,7 @@ function Search() {
         )}
       >
         <Input
-          value={searchData}
+          value={searchItem}
           onChange={handleOnChange}
           placeholder="Search"
           className={cn(
@@ -32,10 +32,10 @@ function Search() {
           className="absolute top-3.5 left-5  text-foreground"
           size={20}
         />
-        {searchData.length > 0 && (
+        {searchItem.length > 0 && (
           <DivWrapper
             onClick={() => {
-              setSearchData("");
+              setSearchItem("");
             }}
             className="absolute top-2.5 right-0 cursor-pointer text-foreground h-[30px] w-[30px]"
           >
