@@ -15,7 +15,6 @@ export default function Login() {
   const { errorMessage, successMessage } = useMessage();
   const existingUidOnCookie = cookie.get("uid") as string;
   const prevRoute = usePreviousRoute();
-  console.log(prevRoute);
   useEffect(() => {
     if (prevRoute.pathname !== "/auth/user/login")
       errorMessage("You have to login first...");
@@ -41,7 +40,9 @@ export default function Login() {
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log(error.message);
-        return errorMessage("something went wrong while signing !!");
+        return errorMessage(
+          error.message || "something went wrong while signing !!"
+        );
       }
       return errorMessage("unknown error occured!!");
     }
@@ -51,7 +52,7 @@ export default function Login() {
     <main className="flex items-center justify-center w-full h-screen select-none bg-background">
       <button
         onClick={handleLoginWithGoogle}
-        className="flex items-center text-2xl transition-all duration-300 rounded-lg shadow-2xl cursor-default shadow-foreground/50 p-7 bg-foreground text-background hover:scale-110 active:scale-75"
+        className="flex items-center transition-all duration-300 rounded-lg shadow-2xl cursor-default md:text-xl sm:text-2xl shadow-foreground/50 p-7 bg-foreground text-background hover:scale-110 active:scale-75"
       >
         <FaGoogle size={40} />
         <span className="mx-4">Continue with Google</span>
