@@ -44,7 +44,7 @@ function UpdateSlug() {
         </div>
       )}
       <section>
-        <UpdateNote noteData={noteData} />
+        <UpdateNote noteData={noteData} updateSlug={updateSlug as string} />
       </section>
     </>
   );
