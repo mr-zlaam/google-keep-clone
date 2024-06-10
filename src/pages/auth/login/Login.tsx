@@ -41,7 +41,9 @@ export default function Login() {
       if (error instanceof Error) {
         console.log(error.message);
         return errorMessage(
-          error.message || "something went wrong while signing !!"
+          (error.message.includes("Firebase:") &&
+            "Remove privacy extensions first!!") ||
+            "something went wrong while signing !!"
         );
       }
       return errorMessage("unknown error occured!!");

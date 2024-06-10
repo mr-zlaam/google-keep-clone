@@ -57,12 +57,12 @@ function Slug() {
       </DivWrapper>
 
       {note ? (
-        <section className=" bg-background max-w-2xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md overflow-hidden">
+        <section className=" bg-background max-w-2xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words">
           <div className="max-h-[80dvh] min-h-[70dvh] overflow-auto px-3 py-2 ">
-            <h1 className="my-4 text-2xl font-semibold leading-[1.4] tracking-wide text-balance">
+            <h1 className="my-4 text-2xl font-semibold leading-[1.4] tracking-wide text-balance text-left break-words">
               {note && note.title}
             </h1>
-            <p className="my-4 text-lg text-balance leading-[2]">
+            <p className="my-4 text-lg text-balance text-left leading-[2] break-words">
               {note && note.description}
             </p>
           </div>
