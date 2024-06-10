@@ -131,12 +131,14 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
                   >
                     save
                   </Button>
-                  <Button
-                    className="absolute py-4 bottom-2 left-4"
-                    onClick={() => setIsNoteOpen((prev) => !prev)}
-                  >
-                    cancel
-                  </Button>
+                  {data.title && data.description && (
+                    <Button
+                      className="absolute py-4 bottom-2 left-4"
+                      onClick={() => setIsNoteOpen((prev) => !prev)}
+                    >
+                      cancel
+                    </Button>
+                  )}
                 </div>
               </form>
             </section>
