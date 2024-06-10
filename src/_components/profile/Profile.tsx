@@ -84,7 +84,7 @@ function Profile() {
         (isLoading ? (
           <Loader />
         ) : (
-          <Card className=" shadow-lg border p-4 absolute top-2 right-4 h-[350px] w-[400px] flex flex-col">
+          <Card className="fixed w-[90%] mx-4 right-0 sm:right-4 h-fit my-4 p-4 top-0  shadow-lg border sm:p-4 sm:absolute sm:top-2  sm:h-[350px] sm:w-[400px] flex flex-col ">
             <button
               onClick={() => setIsCardOpen(false)}
               className="absolute rounded-full right-2 top-2 w-[35px] h-[35px] flex justify-center items-center cursor-pointer duration-300 transition-all hover:bg-foreground/10 "
@@ -114,7 +114,7 @@ function Profile() {
             >
               <span>Manage Your Google Account</span>
             </Link>
-            <div className="flex items-center mx-auto my-4 overflow-hidden border rounded-full border-foreground/10 w-fit">
+            <div className="flex flex-col items-center mx-auto my-4 overflow-hidden border sm:rounded-full sm:flex-row border-foreground/10 w-fit">
               <Link to={"https://accounts.google.com/"} target="_blank">
                 <Button
                   variant={"outline"}
