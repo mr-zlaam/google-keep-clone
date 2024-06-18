@@ -15,6 +15,7 @@ interface UpdateNoteProps {
 function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
   const { errorMessage, successMessage } = useMessage();
   const { startLoading, isLoading, stopLoading } = useLoading();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const [updateData, setUpdateData] = useState({
     title: noteData?.title || "",
@@ -39,10 +40,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
       description: noteData?.description || "",
     });
   }, [noteData?.title, noteData?.description]);
-  const handleUpdate = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<any> => {
-    e.preventDefault();
+  const handleUpdate = async (): Promise<any> => {
     const randomStr = updateSlug?.split("_")[1];
     const slug = useSlugGenerator(updateData?.title as string);
     const updateNewData = {
@@ -68,43 +66,73 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
     }
   };
   return (
-    <main className="h-screen px-3 overflow-hidden">
+    <>
       {isLoading && (
         <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
           <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
         </div>
       )}
-      <section>
-        <form onSubmit={handleUpdate}>
-          <div
-            className="relative w-full z-[100] flex flex-col top-14 max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
-          max-h-[84dvh]   md:min-h-[70dvh] "
-          >
-            <input
-              autoFocus
-              value={updateData.title}
-              onChange={handleChange}
-              type="text"
-              name="title"
-              placeholder="Title"
-              className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
-            />
-            <hr />
-            <textarea
-              value={updateData.description}
-              onChange={handleChange}
-              name="description"
-              id="note"
-              placeholder="Take a note..."
-              className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
-            />
-            <Button className="absolute py-4 bottom-2 right-4" type="submit">
-              update
+      {isModalOpen && (
+        <div className="absolute px-5 py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background border-foreground rounded-md h-[150px] md:w-[500px] overflow-hidden flex flex-col  justify-between ">
+          <h1 className="w-full py-4 text-xl font-semibold text-center">
+            Are You Sure You want to update this note?
+          </h1>
+          <div className="flex justify-end w-full ">
+            <Button
+              className="mx-4"
+              onClick={() => {
+                setIsModalOpen(false);
+              }}
+            >
+              cancel
+            </Button>
+            <Button
+              onClick={handleUpdate}
+              className="mx-4 transition-all duration-300 bg-green-700 hover:bg-green-600"
+            >
+              Yes I am sure
             </Button>
           </div>
-        </form>
-      </section>
-    </main>
+        </div>
+      )}
+      {!isModalOpen && (
+        <main className="h-screen px-3 overflow-hidden">
+          <section>
+            <div
+              className="relative w-full z-[100] flex flex-col top-14 max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
+          max-h-[84dvh]   md:min-h-[70dvh] "
+            >
+              <input
+                autoFocus
+                value={updateData.title}
+                onChange={handleChange}
+                type="text"
+                name="title"
+                placeholder="Title"
+                className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
+              />
+              <hr />
+              <textarea
+                value={updateData.description}
+                onChange={handleChange}
+                name="description"
+                id="note"
+                placeholder="Take a note..."
+                className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
+              />
+              <Button
+                className="absolute py-4 bottom-2 right-4"
+                onClick={() => {
+                  setIsModalOpen(true);
+                }}
+              >
+                update
+              </Button>
+            </div>
+          </section>
+        </main>
+      )}
+    </>
   );
 }
 

@@ -62,6 +62,7 @@ function Slug() {
           </h1>
           <div className="flex justify-end w-full ">
             <Button
+              variant={"default"}
               className="mx-4"
               onClick={() => {
                 setIsModalOpen(false);
