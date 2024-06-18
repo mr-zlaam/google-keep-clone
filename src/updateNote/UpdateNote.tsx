@@ -55,21 +55,30 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
     if (!title || !description)
       return errorMessage("All fields are required!!");
     try {
+      setIsModalOpen(false);
       startLoading();
       await updateDoc(docRef, updateNewData);
       successMessage("Note Update successfully");
-      return navigate("/");
+      navigate("/");
     } catch (error: any) {
       console.log(error.message);
     } finally {
       stopLoading();
     }
   };
+  const hanldeModalOpen = () => {
+    const { title, description } = updateData;
+
+    if (!title) return errorMessage("Title shouldn't be left empty!!");
+    if (!description)
+      return errorMessage("Description shouldn't be left empty!!");
+    setIsModalOpen(true);
+  };
   return (
     <>
       {isLoading && (
         <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
-          <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+          <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-[999]" />
         </div>
       )}
       {isModalOpen && (
@@ -95,7 +104,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
           </div>
         </div>
       )}
-      {!isModalOpen && (
+      {!isModalOpen && !isLoading && (
         <main className="h-screen px-3 overflow-hidden">
           <section>
             <div
@@ -118,13 +127,11 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
                 name="description"
                 id="note"
                 placeholder="Take a note..."
-                className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
+                className="h-[450px]   px-4 py-4 outline-none resize-none my-7 bg-background"
               />
               <Button
                 className="absolute py-4 bottom-2 right-4"
-                onClick={() => {
-                  setIsModalOpen(true);
-                }}
+                onClick={hanldeModalOpen}
               >
                 update
               </Button>
