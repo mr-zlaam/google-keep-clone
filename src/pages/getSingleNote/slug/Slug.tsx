@@ -40,6 +40,7 @@ function Slug() {
   }, [slug]);
   const deleteNote = async () => {
     try {
+      setIsModalOpen(false);
       startLoading();
       await DeleteNote(note?.id ? note.id : ("" as string));
       successMessage("Note deleted successfully");
@@ -80,7 +81,7 @@ function Slug() {
           </div>
         </div>
       )}
-      {!isModalOpen && (
+      {!isModalOpen && !isLoading && (
         <main className="h-screen px-3 overflow-hidden">
           <DivWrapper
             className="fixed left-5 top-2 lg:top-5"
