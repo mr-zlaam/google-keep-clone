@@ -73,7 +73,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
         </div>
       )}
       {isModalOpen && (
-        <div className="absolute px-5 py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background border-foreground rounded-md h-[150px] md:w-[500px] overflow-hidden flex flex-col  justify-between ">
+        <div className="mx-3 absolute px-5 py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background border-foreground rounded-md h-[150px] md:w-[500px] overflow-hidden flex flex-col  justify-between ">
           <h1 className="w-full py-4 text-xl font-semibold text-center">
             Are You Sure You want to update this note?
           </h1>
