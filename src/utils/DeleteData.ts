@@ -7,5 +7,6 @@ export default async function DeleteNote(id: string) {
     await deleteDoc(deleteDocsRef);
   } catch (error: any) {
     console.log(error.message);
+    return;
   }
 }

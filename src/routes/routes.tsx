@@ -3,7 +3,7 @@ import SlugLayout from "@/Layouts/SlugLayout";
 import Login from "@/pages/auth/login/Login";
 import ErrorPage from "@/pages/error/ErrorPage";
 import Home from "@/pages/home/Home";
-import Slug from "@/pages/slug/Slug";
+import Slug from "@/pages/getSingleNote/slug/Slug";
 import UpdateSlug from "@/updateNote/UpdateSlug";
 import { createBrowserRouter } from "react-router-dom";
 export const routes = createBrowserRouter([
