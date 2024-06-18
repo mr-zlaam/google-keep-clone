@@ -90,16 +90,11 @@ function Slug() {
           </DivWrapper>
 
           {note ? (
-            <section className=" bg-background max-w-xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words">
+            <section className=" bg-background max-w-xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words ">
               <div className="">
-                <input
-                  readOnly
-                  value={note.title}
-                  type="text"
-                  name="title"
-                  placeholder="Title"
-                  className="p-4 my-2 font-semibold uppercase bg-transparent outline-none text-foreground placeholder:capitalize"
-                />
+                <h2 className="w-full p-4 my-2 overflow-hidden font-semibold uppercase break-words bg-transparent text-foreground leading-[2]">
+                  {note.title}
+                </h2>
                 <hr />
                 <textarea
                   readOnly
