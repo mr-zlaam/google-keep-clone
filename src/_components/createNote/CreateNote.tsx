@@ -89,13 +89,13 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
         )}
         {!isNoteOpen && (
           <div className="px-5">
-            <div className="max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-md cursor-pointer shadow-foreground/30 border-foreground/40 ">
+            <div className="max-w-xl mx-auto my-4 overflow-hidden border rounded shadow-lg cursor-pointer border-foreground/20 bg-background">
               <input
                 onClick={() => setIsNoteOpen((prev) => !prev)}
                 type="text"
                 readOnly
                 placeholder="Take a note..."
-                className="w-full px-4 py-4 outline-none bg-background placeholder:text-foreground/80"
+                className="w-full px-4 py-4 outline-none bg-background placeholder:text-foreground/60"
               />
             </div>
           </div>
