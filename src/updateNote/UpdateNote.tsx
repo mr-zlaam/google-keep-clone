@@ -82,11 +82,11 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
         </div>
       )}
       {isModalOpen && (
-        <div className="mx-3 absolute px-5 py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background border-foreground rounded-md h-[150px] md:w-[500px] overflow-hidden flex flex-col  justify-between ">
-          <h1 className="w-full py-4 text-xl font-semibold text-center">
+        <div className="absolute px-5 w-[250px] py-4 transform -translate-x-1/2 -translate-y-1/2  top-1/2 left-1/2 bg-background border rounded-md  md:w-[500px] overflow-hidden flex flex-col  justify-between h-fit shadow-2xl shadow-foreground/20">
+          <h1 className="w-full py-4 text-sm font-semibold md:my-3 sm:text-center sm:text-lg text-muted-foreground ">
             Are You Sure You want to update this note?
           </h1>
-          <div className="flex justify-end w-full ">
+          <div className="flex flex-col justify-end w-full gap-4 md:flex-row">
             <Button
               className="mx-4"
               onClick={() => {
@@ -97,7 +97,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
             </Button>
             <Button
               onClick={handleUpdate}
-              className="mx-4 transition-all duration-300 bg-green-700 hover:bg-green-600"
+              className="mx-4 text-white transition-all duration-300 bg-green-700 hover:bg-green-600"
             >
               Yes I am sure
             </Button>
@@ -105,11 +105,11 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
         </div>
       )}
       {!isModalOpen && !isLoading && (
-        <main className="h-screen px-3 overflow-hidden">
-          <section>
+        <main className="h-screen px-3 overflow-hidden ">
+          <section className="overflow-hidden  h-[90dvh] py-3">
             <div
-              className="relative w-full z-[100] flex flex-col top-14 max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
-          max-h-[84dvh]   md:min-h-[70dvh] "
+              className="relative w-full z-[100] flex flex-col top-14 max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40  py-5
+          "
             >
               <input
                 autoFocus
@@ -127,14 +127,11 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
                 name="description"
                 id="note"
                 placeholder="Take a note..."
-                className="h-[450px]   px-4 py-4 outline-none resize-none my-7 bg-background"
+                className="h-[450px] md:h-[550px]   px-4 py-4 outline-none resize-none my-5 bg-background"
               />
-              <Button
-                className="absolute py-4 bottom-2 right-4"
-                onClick={hanldeModalOpen}
-              >
-                update
-              </Button>
+              <div className="absolute bottom-0 flex justify-end w-full px-3 py-2 bg-background">
+                <Button onClick={hanldeModalOpen}>update</Button>
+              </div>
             </div>
           </section>
         </main>

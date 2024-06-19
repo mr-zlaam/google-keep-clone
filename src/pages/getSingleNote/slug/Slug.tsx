@@ -57,13 +57,16 @@ function Slug() {
   return (
     <>
       {isModalOpen && (
-        <div className="mx-3 absolute px-5 py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background border-foreground rounded-md h-[150px] md:w-[500px] overflow-hidden flex flex-col  justify-between ">
-          <h1 className="w-full py-4 text-xl font-semibold text-center">
+        <div
+          className="absolute px-5 w-[250px] py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background  rounded-md  md:w-[500px] overflow-hidden flex flex-col  justify-between h-fit
+        shadow-2xl shadow-foreground/20
+        "
+        >
+          <h1 className="w-full py-4 font-semibold sm:text-center sm:text-xl text-muted-foreground ">
             Are You Sure You want to delete this note?
           </h1>
-          <div className="flex justify-end w-full ">
+          <div className="flex flex-col justify-end w-full gap-4 md:flex-row">
             <Button
-              variant={"default"}
               className="mx-4"
               onClick={() => {
                 setIsModalOpen(false);
@@ -72,9 +75,9 @@ function Slug() {
               cancel
             </Button>
             <Button
-              onClick={deleteNote}
               variant={"destructive"}
-              className="mx-4"
+              onClick={deleteNote}
+              className="mx-4 text-white transition-all duration-300"
             >
               Yes I am sure
             </Button>
@@ -97,16 +100,15 @@ function Slug() {
                   {note.title}
                 </h2>
                 <hr />
-                <textarea
-                  readOnly
-                  value={note.description}
-                  name="description"
-                  id="note"
-                  placeholder="Take a note..."
-                  className="h-[70dvh] w-full  px-4 py-4 outline-none resize-none my-7 bg-transparent"
-                />
+                <span className="block w-full my-3 text-xs text-center">
+                  Last Update:-{" "}
+                  {note.time && new Date(note.time.toDate()).toLocaleString()}
+                </span>
+                <pre className="h-[68dvh] w-full  px-4 py-5 text-balance outline-none resize-none my-7 bg-transparent font-sans overflow-x-hidden ">
+                  {note.description}
+                </pre>
               </div>
-              <div className="absolute bottom-0 flex justify-end w-full p-5 bg-background ">
+              <div className="absolute bottom-0 flex justify-end w-full py-2 bg-background">
                 <DivWrapper
                   className="mx-4"
                   onClick={() => {

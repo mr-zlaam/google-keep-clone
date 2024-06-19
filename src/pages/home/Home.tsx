@@ -75,11 +75,9 @@ function Home() {
                 <h2 className="block my-3 text-lg font-semibold line-clamp-2 text-clip">
                   {note.title}
                 </h2>
-                <textarea
-                  readOnly
-                  defaultValue={note.description}
-                  className="block w-full h-full my-3 text-sm bg-transparent outline-none cursor-pointer resize-none line-clamp-6"
-                />
+                <pre className="block w-full h-[200px] md:h-[300px] line-[3] my-3 font-sans text-sm bg-transparent outline-none cursor-pointer resize-none line-clamp-6 ">
+                  {note.description}
+                </pre>
               </Card>
             </Fragment>
           ))}
