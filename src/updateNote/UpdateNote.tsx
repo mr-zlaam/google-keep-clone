@@ -107,7 +107,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
       {!isModalOpen && !isLoading && (
         <main className="h-screen px-3 overflow-hidden ">
           <section className=" h-[98dvh] overflow-auto py-3">
-            <div className="relative w-full z-[100] flex flex-col top-5 lg:top-10 max-w-xl mx-auto overflow-hidden border rounded shadow-lg  cursor-pointer text-foreground bg-background shadow-foreground/30">
+            <div className="relative w-full z-[100] flex flex-col top-1 lg:top-10 max-w-xl mx-auto overflow-hidden border rounded shadow-lg  cursor-pointer text-foreground bg-background shadow-foreground/30">
               <input
                 autoFocus
                 value={updateData.title}
