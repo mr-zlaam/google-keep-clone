@@ -108,7 +108,7 @@ function Profile() {
               !
             </h1>
             <Link
-              className="flex items-center justify-center py-2 mx-auto my-4 text-sm text-blue-500 transition-all duration-300 border rounded-full hover:bg-background/80 px-7 w-fit border-foreground/60"
+              className="flex items-center justify-center py-2 mx-auto my-4 text-sm transition-all duration-300 border rounded-full text-foreground/70 hover:bg-foreground/5 px-7 w-fit border-foreground/60 "
               to={"https://myaccount.google.com/"}
               target="_blank"
             >
