@@ -106,11 +106,8 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
       )}
       {!isModalOpen && !isLoading && (
         <main className="h-screen px-3 overflow-hidden ">
-          <section className="overflow-hidden  h-[90dvh] py-3">
-            <div
-              className="relative w-full z-[100] flex flex-col top-14 max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40  py-5
-          "
-            >
+          <section className=" h-[98dvh] overflow-auto py-3">
+            <div className="relative w-full z-[100] flex flex-col top-5 lg:top-10 max-w-xl mx-auto overflow-hidden border rounded shadow-lg  cursor-pointer text-foreground bg-background shadow-foreground/30">
               <input
                 autoFocus
                 value={updateData.title}
@@ -127,9 +124,17 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
                 name="description"
                 id="note"
                 placeholder="Take a note..."
-                className="h-[450px] md:h-[550px]   px-4 py-4 outline-none resize-none my-5 bg-background"
+                className="h-[70dvh]    px-4 py-4 outline-none resize-none my-5 bg-background"
               />
               <div className="absolute bottom-0 flex justify-end w-full px-3 py-2 bg-background">
+                <Button
+                  className="mx-4 md:hidden"
+                  onClick={() => {
+                    navigate(`/1/${updateSlug}`);
+                  }}
+                >
+                  Cancel
+                </Button>
                 <Button onClick={hanldeModalOpen}>update</Button>
               </div>
             </div>
