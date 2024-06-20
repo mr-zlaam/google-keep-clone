@@ -89,6 +89,6 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## Contact
 
 - **Author**: [zlaam](https://github.com/your-zlaam)
-- **Email**: zlaam.dev@example.com
+- **Email**: zlaam.dev@gmail.com
 
 ### Enjoy the App!!
