@@ -6,7 +6,7 @@ import { useMessage } from "@/hooks/useMessage";
 import { useSlugGenerator } from "@/hooks/useSlugGenerator";
 import { Note } from "@/types";
 import { Timestamp, doc, updateDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 interface UpdateNoteProps {
   noteData: Note | null;
@@ -105,24 +105,49 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
         </div>
       )}
       {!isModalOpen && !isLoading && (
-        <main className="h-screen px-4 py-4 overflow-hidden ">
-          <div className="relative max-w-screen-md mx-auto overflow-hidden border box h-fit top-5 ">
-            <input
-              type="text"
-              name="title"
-              value={updateData.title}
-              onChange={handleChange}
-              className="w-full px-5 py-4 text-lg font-bold uppercase bg-transparent outline-none"
-            />
-            <textarea
-              name="description"
-              value={updateData.description}
-              onChange={handleChange}
-              rows={50}
-              className="w-full p-4 overflow-hidden text-black outline-none"
-            ></textarea>
-          </div>
-        </main>
+        <Fragment>
+          {isLoading && (
+            <div className="before:fixed before:h-screen before: before:w-full before:bg-foreground/5 before:top-0 before:left-0">
+              <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+            </div>
+          )}
+          <div className="before:fixed z-[99] before:h-screen before:w-full before:bg-foreground/5 before:top-0 before:left-0" />
+
+          <>
+            <main className="flex h-[90dvh] py-10 ">
+              <div className=" relative w-full z-[100] flex flex-col max-w-xl mx-auto overflow-hidden border rounded shadow-md  text-foreground bg-background shadow-foreground/30 border-foreground/40 h-full ">
+                <input
+                  value={updateData.title}
+                  onChange={handleChange}
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
+                />
+                <hr />
+                <textarea
+                  value={updateData.description}
+                  onChange={handleChange}
+                  name="description"
+                  id="note"
+                  placeholder="Take a note..."
+                  className="h-full px-4 py-4 outline-none resize-none my-7 bg-background"
+                />
+                <div className="flex flex-row-reverse items-center justify-between w-full px-4 py-2">
+                  <Button className="mx-4" onClick={hanldeModalOpen}>
+                    save
+                  </Button>
+                  <Button
+                    className="mx-4"
+                    onClick={() => navigate(`/1/${updateSlug}`)}
+                  >
+                    cancel
+                  </Button>
+                </div>
+              </div>
+            </main>
+          </>
+        </Fragment>
       )}
     </>
   );
