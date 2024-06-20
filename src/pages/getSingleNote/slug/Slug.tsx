@@ -107,7 +107,7 @@ function Slug() {
                 <textarea
                   readOnly
                   defaultValue={note.description}
-                  className="h-full p-3 bg-transparent resize-none"
+                  className="h-full p-3 bg-transparent outline-none resize-none"
                 ></textarea>
                 <div className="flex justify-end w-full bg-background">
                   <DivWrapper
