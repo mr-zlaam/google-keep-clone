@@ -8,12 +8,18 @@ import { GetData, collectionRef } from "@/utils/GetData";
 import { Timestamp, addDoc } from "firebase/firestore";
 import { Fragment, useEffect, useState } from "react";
 import Loader from "../loading/Loader";
+import { cn } from "@/lib/utils";
 interface CreateNoteProp {
   setIsUploaded: React.Dispatch<React.SetStateAction<boolean>>;
+  isNoteOpen: boolean;
+  setIsNoteOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-function CreateNote({ setIsUploaded }: CreateNoteProp) {
+function CreateNote({
+  setIsUploaded,
+  isNoteOpen,
+  setIsNoteOpen,
+}: CreateNoteProp) {
   const { errorMessage, successMessage } = useMessage();
-  const [isNoteOpen, setIsNoteOpen] = useState(false);
   const { isLoading, startLoading, stopLoading } = useLoading();
   const [data, setData] = useState({
     title: "",
@@ -80,7 +86,7 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
           <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
         </div>
       )}
-      <section>
+      <section className={cn(isNoteOpen && "h-[80vh] ")}>
         {isNoteOpen && (
           <div
             onClick={() => setIsNoteOpen(false)}
@@ -102,46 +108,41 @@ function CreateNote({ setIsUploaded }: CreateNoteProp) {
         )}
         {isNoteOpen && (
           <>
-            <section className="px-4 py-4">
-              <form onSubmit={handleSubmit}>
-                <div
-                  className=" relative w-full z-[100] flex flex-col max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 
-          max-h-[84dvh]   md:min-h-[70dvh] "
+            <form onSubmit={handleSubmit} className="h-full ">
+              <div className=" relative w-full z-[100] flex flex-col max-w-xl mx-auto overflow-hidden border rounded shadow-md cursor-pointer text-foreground bg-background shadow-foreground/30 border-foreground/40 h-full">
+                <input
+                  value={data.title}
+                  onChange={handleChange}
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
+                />
+                <hr />
+                <textarea
+                  value={data.description}
+                  onChange={handleChange}
+                  name="description"
+                  id="note"
+                  placeholder="Take a note..."
+                  className="h-full px-4 py-4 outline-none resize-none my-7 bg-background"
+                />
+                <Button
+                  className="absolute py-4 bottom-2 right-4"
+                  type="submit"
                 >
-                  <input
-                    value={data.title}
-                    onChange={handleChange}
-                    type="text"
-                    name="title"
-                    placeholder="Title"
-                    className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
-                  />
-                  <hr />
-                  <textarea
-                    value={data.description}
-                    onChange={handleChange}
-                    name="description"
-                    id="note"
-                    placeholder="Take a note..."
-                    className="h-[70dvh]  px-4 py-4 outline-none resize-none my-7 bg-background"
-                  />
+                  save
+                </Button>
+                {data.title && data.description && (
                   <Button
-                    className="absolute py-4 bottom-2 right-4"
-                    type="submit"
+                    className="absolute py-4 bottom-2 left-4"
+                    onClick={() => setIsNoteOpen((prev) => !prev)}
                   >
-                    save
+                    cancel
                   </Button>
-                  {data.title && data.description && (
-                    <Button
-                      className="absolute py-4 bottom-2 left-4"
-                      onClick={() => setIsNoteOpen((prev) => !prev)}
-                    >
-                      cancel
-                    </Button>
-                  )}
-                </div>
-              </form>
-            </section>
+                )}
+              </div>
+            </form>
           </>
         )}
       </section>
