@@ -105,40 +105,23 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
         </div>
       )}
       {!isModalOpen && !isLoading && (
-        <main className="h-screen px-3 overflow-hidden ">
-          <section className=" h-[98dvh] overflow-auto py-3">
-            <div className="relative w-full z-[100] flex flex-col  top-1 lg:top-10 max-w-xl mx-auto overflow-hidden border rounded shadow-lg  cursor-pointer text-foreground bg-background shadow-foreground/30">
-              <input
-                autoFocus
-                value={updateData.title}
-                onChange={handleChange}
-                type="text"
-                name="title"
-                placeholder="Title"
-                className="p-4 my-2 font-semibold uppercase outline-none text-foreground bg-background placeholder:capitalize"
-              />
-              <hr />
-              <textarea
-                value={updateData.description}
-                onChange={handleChange}
-                name="description"
-                id="note"
-                placeholder="Take a note..."
-                className="h-[450px]    px-4 py-4 outline-none resize-none my-5 bg-background"
-              />
-              <div className="absolute bottom-0 flex justify-end w-full px-3 py-2 bg-red-500 bg-background">
-                <Button
-                  className="mx-4 md:hidden"
-                  onClick={() => {
-                    navigate(`/1/${updateSlug}`);
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button onClick={hanldeModalOpen}>update</Button>
-              </div>
-            </div>
-          </section>
+        <main className="h-screen px-4 py-4 overflow-hidden ">
+          <div className="relative max-w-screen-md mx-auto overflow-hidden border box h-fit top-5 ">
+            <input
+              type="text"
+              name="title"
+              value={updateData.title}
+              onChange={handleChange}
+              className="w-full px-5 py-4 text-lg font-bold uppercase bg-transparent outline-none"
+            />
+            <textarea
+              name="description"
+              value={updateData.description}
+              onChange={handleChange}
+              rows={50}
+              className="w-full p-4 overflow-hidden text-black outline-none"
+            ></textarea>
+          </div>
         </main>
       )}
     </>
