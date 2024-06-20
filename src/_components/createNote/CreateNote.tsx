@@ -86,7 +86,7 @@ function CreateNote({
           <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
         </div>
       )}
-      <section className={cn(isNoteOpen && "h-[80vh] ")}>
+      <section className={cn(isNoteOpen && "h-[80vh] mx-4")}>
         {isNoteOpen && (
           <div
             onClick={() => setIsNoteOpen(false)}

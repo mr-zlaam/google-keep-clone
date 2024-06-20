@@ -6,7 +6,7 @@ import { useMessage } from "@/hooks/useMessage";
 import { Note } from "@/types";
 import DeleteNote from "@/utils/DeleteData";
 import { GetSingleNote } from "@/utils/GetSingleNote";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
@@ -85,48 +85,50 @@ function Slug() {
         </div>
       )}
       {!isModalOpen && !isLoading && (
-        <main className="h-screen px-3 overflow-hidden">
+        <main className="flex items-center justify-center h-screen px-3 overflow-hidden bg-background">
           <DivWrapper
-            className="fixed left-5 top-2 lg:top-5"
+            className="fixed left-[-20px] lg:left-5 top-0 lg:top-5"
             onClick={() => navigate("/")}
           >
             <MdKeyboardArrowLeft size={30} />
           </DivWrapper>
 
           {note ? (
-            <section className=" bg-background max-w-xl mx-auto max-h-[80dvh]  min-h-[90dvh] z-[10] relative top-12 border md:border-foreground/50 border-foreground/20 rounded-md  overflow-hidden break-words ">
-              <div className="">
-                <h2 className="w-full p-4 my-2 overflow-hidden font-semibold uppercase break-words bg-transparent text-foreground leading-[2]">
+            <Fragment>
+              <div className="flex flex-col  h-[90dvh]   p-3 resize-x mx-4  sm:w-[640px] w-[90%] px-4 rounded-md border">
+                <h1 className="overflow-hidden text-base font-semibold uppercase break-words bg-transparent bg-red-500 py-7 sm:py-3 text-foreground h-fit sm:text-lg ">
                   {note.title}
-                </h2>
+                </h1>
                 <hr />
-                <span className="block w-full my-3 text-xs text-center">
+                <p className="my-2 text-xs text-center ">
                   Last Update:-{" "}
                   {note.time && new Date(note.time.toDate()).toLocaleString()}
-                </span>
-                <pre className="h-[68dvh] w-full  px-4 py-5 text-balance outline-none resize-none my-7 bg-transparent font-sans overflow-x-hidden ">
-                  {note.description}
-                </pre>
+                </p>
+                <textarea
+                  readOnly
+                  defaultValue={note.description}
+                  className="h-full p-3 bg-transparent resize-none"
+                ></textarea>
+                <div className="flex justify-end w-full bg-background">
+                  <DivWrapper
+                    className="mx-4"
+                    onClick={() => {
+                      navigate(`/updateNote/${slug}`);
+                    }}
+                  >
+                    <FaEdit size={25} className="" />
+                  </DivWrapper>
+                  <DivWrapper
+                    className="mx-4"
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    <MdDelete size={25} className="" />
+                  </DivWrapper>
+                </div>
               </div>
-              <div className="absolute bottom-0 flex justify-end w-full py-2 bg-background">
-                <DivWrapper
-                  className="mx-4"
-                  onClick={() => {
-                    navigate(`/updateNote/${slug}`);
-                  }}
-                >
-                  <FaEdit size={25} className="" />
-                </DivWrapper>
-                <DivWrapper
-                  className="mx-4"
-                  onClick={() => {
-                    setIsModalOpen(true);
-                  }}
-                >
-                  <MdDelete size={25} className="" />
-                </DivWrapper>
-              </div>
-            </section>
+            </Fragment>
           ) : (
             isLoading && (
               <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">

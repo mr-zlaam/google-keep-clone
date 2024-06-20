@@ -85,7 +85,7 @@
 }
 /* Firefox */
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #28282b transparent;
   scroll-behavior: smooth;
   scroll-timeline-name: zlaam;
