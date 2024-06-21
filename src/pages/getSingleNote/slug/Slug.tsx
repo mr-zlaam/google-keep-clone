@@ -90,7 +90,7 @@ function Slug() {
         </div>
       )}
       {!isModalOpen && !isLoading && (
-        <main className="flex items-center justify-center h-[90dvh] md:my-2 px-3 overflow-hidden bg-background">
+        <main className="flex items-center justify-center h-screen px-3 overflow-hidden ">
           <DivWrapper
             className="fixed left-[-20px] lg:left-5 top-0 lg:top-5"
             onClick={() => navigate("/")}
@@ -100,8 +100,8 @@ function Slug() {
 
           {note ? (
             <Fragment>
-              <div className="flex flex-col  h-[90dvh]   p-3 resize-x mx-4  sm:w-[640px] w-[90%] px-4 rounded-md border">
-                <h1 className="overflow-hidden text-base font-semibold uppercase break-words bg-transparent bg-red-500 py-7 sm:py-3 text-foreground h-fit sm:text-lg ">
+              <div className="flex flex-col  h-[90dvh]   p-3 resize-x mx-4  sm:w-[640px] w-[90%] px-4 rounded-md border  shadow-2xl shadow-foreground/40">
+                <h1 className="overflow-hidden text-base font-semibold uppercase break-words bg-transparent py-7 sm:py-3 text-foreground h-fit sm:text-lg ">
                   {note.title}
                 </h1>
                 <hr />
