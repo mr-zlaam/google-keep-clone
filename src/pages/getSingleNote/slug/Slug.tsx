@@ -114,6 +114,7 @@ function Slug() {
                   defaultValue={note.description}
                   className="h-full p-3 my-2 bg-transparent outline-none resize-none"
                 ></textarea>
+                <hr />
                 <div className="flex justify-end w-full bg-background">
                   <DivWrapper
                     className="mx-4"
