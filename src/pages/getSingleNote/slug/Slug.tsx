@@ -90,7 +90,7 @@ function Slug() {
         </div>
       )}
       {!isModalOpen && !isLoading && (
-        <main className="flex items-center justify-center h-screen px-3 overflow-hidden bg-background">
+        <main className="flex items-center justify-center h-[90dvh] md:my-2 px-3 overflow-hidden bg-background">
           <DivWrapper
             className="fixed left-[-20px] lg:left-5 top-0 lg:top-5"
             onClick={() => navigate("/")}

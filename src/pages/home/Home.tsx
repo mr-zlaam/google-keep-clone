@@ -97,7 +97,7 @@ function Home() {
                     <textarea
                       readOnly
                       defaultValue={note.description}
-                      className="w-full h-full px-3 py-3 my-2 bg-transparent outline-none resize-none "
+                      className="w-full h-full px-3 py-3 my-2 bg-transparent outline-none cursor-pointer resize-none "
                     ></textarea>
                   </Card>
                 </Fragment>

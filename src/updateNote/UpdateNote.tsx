@@ -77,7 +77,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
   return (
     <>
       {isLoading && (
-        <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
+        <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0 z-[999]">
           <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-[999]" />
         </div>
       )}
@@ -114,7 +114,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
           <div className="before:fixed z-[99] before:h-screen before:w-full before:bg-foreground/5 before:top-0 before:left-0" />
 
           <>
-            <main className="flex h-[85dvh] py-10 px-3">
+            <main className="flex h-[90dvh] py-10 px-3">
               <div className=" relative w-full z-[100] flex flex-col max-w-xl mx-auto overflow-hidden border rounded shadow-md  text-foreground bg-background shadow-foreground/30 border-foreground/40 h-full ">
                 <input
                   value={updateData.title}

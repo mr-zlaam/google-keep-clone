@@ -37,17 +37,18 @@ function UpdateSlug() {
   }, [updateSlug]);
   return (
     <>
+      {isLoading && (
+        <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0 z-[999]">
+          <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+        </div>
+      )}
       <DivWrapper
         className="fixed hidden md:flex left-5 top-2 lg:top-5 z-[999]"
         onClick={() => navigate(`/1/${updateSlug}`)}
       >
         <MdKeyboardArrowLeft size={30} />
       </DivWrapper>
-      {isLoading && (
-        <div className="before:fixed before:h-screen before: before:w-full before:bg-transparent before:top-0 before:left-0">
-          <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
-        </div>
-      )}
+
       <section>
         <UpdateNote noteData={noteData} updateSlug={updateSlug as string} />
       </section>
