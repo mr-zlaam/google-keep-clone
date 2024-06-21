@@ -114,7 +114,7 @@ function UpdateNote({ noteData, updateSlug }: UpdateNoteProps) {
           <div className="before:fixed z-[99] before:h-screen before:w-full before:bg-foreground/5 before:top-0 before:left-0" />
 
           <>
-            <main className="flex h-[90dvh] py-10 ">
+            <main className="flex h-[85dvh] py-10 px-3">
               <div className=" relative w-full z-[100] flex flex-col max-w-xl mx-auto overflow-hidden border rounded shadow-md  text-foreground bg-background shadow-foreground/30 border-foreground/40 h-full ">
                 <input
                   value={updateData.title}
