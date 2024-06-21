@@ -43,7 +43,7 @@ function UpdateSlug() {
         </div>
       )}
       <DivWrapper
-        className="fixed hidden md:flex left-5 top-2 lg:top-5 z-[999]"
+        className="fixed hidden md:flex left-5 top-2 lg:top-5 z-[999] "
         onClick={() => navigate(`/1/${updateSlug}`)}
       >
         <MdKeyboardArrowLeft size={30} />
