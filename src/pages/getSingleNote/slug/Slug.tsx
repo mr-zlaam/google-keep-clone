@@ -56,6 +56,11 @@ function Slug() {
   };
   return (
     <>
+      {isLoading && (
+        <div className="before:fixed before:h-screen before:w-full before:bg-transparent before:top-0 before:left-0">
+          <Loader className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+        </div>
+      )}
       {isModalOpen && (
         <div
           className="absolute px-5 w-[250px] py-4 transform -translate-x-1/2 -translate-y-1/2 border top-1/2 left-1/2 bg-background  rounded-md  md:w-[500px] overflow-hidden flex flex-col  justify-between h-fit
