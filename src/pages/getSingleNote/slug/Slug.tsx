@@ -10,7 +10,7 @@ import { Fragment, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
-
+// This is the file where we get single note detail
 function Slug() {
   const navigate = useNavigate();
   const { slug } = useParams();
